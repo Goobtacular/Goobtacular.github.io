@@ -17,10 +17,6 @@
       font-family: sans-serif;
     }
 
-	body {
-	  min-height: 200vh;
-	}
-
     /* Background container - full screen, doesn't clip */
     #parallax-container {
       position: fixed;
@@ -69,30 +65,35 @@
 </head>
 <body>
 
-  <!-- Background -->
-  <div id="parallax-container">
-    <div id="parallax-background"></div>
-  </div>
+	<!-- Background -->
+	<div id="parallax-container">
+	<div id="parallax-background"></div>
+	</div>
 
-  <!-- Foreground content -->
-  <main>
-    <div class="content-section">Welcome to the Dream</div>
-    <div class="content-section">Let It Sink In...</div>
-    <div class="content-section">A Moment to Breathe</div>
-    <div class="content-section">Almost There...</div>
-    <div class="content-section">End of the Dream 🌙</div>
-  </main>
+	<!-- Foreground content -->
+	<main>
+	<div class="content-section">Welcome to the Dream</div>
+	<div class="content-section">Let It Sink In...</div>
+	<div class="content-section">A Moment to Breathe</div>
+	<div class="content-section">Almost There...</div>
+	<div class="content-section">End of the Dream 🌙</div>
+	</main>
 
   <!-- Parallax Script -->
 	<script>
+	  console.log("Script loaded."); // Should appear even before scrolling
+
 	  window.addEventListener("scroll", () => {
+		console.log("Scroll detected!"); // Should appear as you scroll
+
 		const scrollTop = window.scrollY;
-		console.log("ScrollY:", scrollTop); // 👈 Add this line
 		const factor = 0.5;
 		const yOffset = scrollTop * factor;
 
 		const bg = document.getElementById("parallax-background");
-		bg.style.transform = `translateY(-${yOffset}px)`;
+		if (bg) {
+		  bg.style.transform = `translateY(-${yOffset}px)`;
+		}
 	  });
 	</script>
 
