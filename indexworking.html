@@ -32,7 +32,7 @@
 	  top: 0;
 	  left: 0;
 	  width: 100%;
-	  height: 200vh; /* start with enough room for scroll */
+	  /* height: 300vh; <- delete this */
 	  background-image: url("https://picsum.photos/1024/1536");
 	  background-size: cover;
 	  background-repeat: no-repeat;
@@ -103,31 +103,38 @@
     <div class="alt-section">🌌 The stars begin to shine through...</div>
 
     <div class="content-section">End of the Dream 🌙</div>
+
   </main>
 
-	<script>
-	  console.log("Script loaded.");
+<script>
+  const bg = document.getElementById("parallax-background");
 
-	  const bg = document.getElementById("parallax-background");
+  function updateParallax() {
+    const scrollTop = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const maxTranslate = bg.offsetHeight - window.innerHeight;
 
-	  function updateParallax() {
-		const scrollTop = window.scrollY;
-		const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const progress = scrollTop / maxScroll;
+    const yOffset = progress * maxTranslate;
 
-		const maxTranslate = bg.offsetHeight - window.innerHeight;
+    bg.style.transform = `translateY(-${yOffset}px)`;
+  }
 
-		const progress = scrollTop / maxScroll;
-		const yOffset = progress * maxTranslate;
+  function resizeParallaxBackground() {
+    const parallaxFactor = 0.5; // how "slow" the background scrolls
+    const pageHeight = document.body.scrollHeight;
+    const viewportHeight = window.innerHeight;
 
-		if (bg) {
-		  bg.style.transform = `translateY(-${yOffset}px)`;
-		}
-	  }
+    const imageHeight = viewportHeight + (pageHeight - viewportHeight) * parallaxFactor;
+    bg.style.height = `${imageHeight}px`;
 
-	  window.addEventListener("scroll", updateParallax);
-	  window.addEventListener("resize", updateParallax);
-	  window.addEventListener("load", updateParallax);
-	</script>
+    updateParallax(); // recalculate position after resize
+  }
+
+  window.addEventListener("scroll", updateParallax);
+  window.addEventListener("resize", resizeParallaxBackground);
+  window.addEventListener("load", resizeParallaxBackground);
+</script>
 
 </body>
 </html>
