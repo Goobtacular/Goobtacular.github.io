@@ -18,7 +18,7 @@
       overflow-x: hidden;
     }
 
-    /* Fixed background container */
+    /* Parallax wrapper */
     #main1 {
       position: fixed;
       top: 0;
@@ -29,24 +29,25 @@
       z-index: -1;
     }
 
-    /* Moveable background image inside the container */
-    #main1 .bg {
+    /* Background image moves inside the wrapper */
+    #main1::before {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 300vh; /* Simulates scrollable background depth */
+      height: 300vh; /* This simulates scrollable background */
       background-image: url("../docs/assets/ohwhatadream.png");
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center top;
-      will-change: transform;
+      background-position: center 0;
+      transform: translateY(0);
+      transition: transform 0.1s linear;
     }
 
     main {
       position: relative;
       z-index: 1;
-      padding-bottom: 20vh; /* Ensure space to scroll past last section */
     }
 
     .content-section {
@@ -67,9 +68,7 @@
 <body>
 
   <!-- Background layer -->
-  <div id="main1">
-    <div class="bg" id="bg-image"></div>
-  </div>
+  <div id="main1"></div>
 
   <!-- Foreground content -->
   <main>
@@ -81,13 +80,24 @@
   </main>
 
   <script>
+    // Parallax scroll effect
     window.addEventListener('scroll', function () {
       var scrollTop = window.scrollY || document.documentElement.scrollTop;
-      var factor = 0.5; // Adjust this for faster/slower parallax
+      var factor = 0.5;
       var yOffset = scrollTop * factor;
+      document.querySelector("#main1::before"); // this won't work, so:
+      document.querySelector("#main1").style.setProperty('--scroll-y', yOffset + 'px');
 
-      const bg = document.getElementById('bg-image');
-      bg.style.transform = `translateY(-${yOffset}px)`;
+      // Apply transform manually to the pseudo-element via style sheet
+      const styleTag = document.getElementById("parallax-style");
+      if (styleTag) {
+        styleTag.innerHTML = `#main1::before { transform: translateY(-${yOffset}px); }`;
+      } else {
+        const newStyle = document.createElement("style");
+        newStyle.id = "parallax-style";
+        newStyle.innerHTML = `#main1::before { transform: translateY(-${yOffset}px); }`;
+        document.head.appendChild(newStyle);
+      }
     });
   </script>
 
