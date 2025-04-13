@@ -61,6 +61,24 @@
       justify-content: center;
       font-size: 2rem;
     }
+
+    /* NEW ALTERNATE SECTION */
+    .alt-section {
+      height: 30vh;
+      width: 60%;
+      margin: 5vh auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border-radius: 30px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-style: italic;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -71,9 +89,19 @@
 
   <main>
     <div class="content-section">Welcome to the Dream</div>
+
+    <div class="alt-section">"Sometimes the in-between is the most important part."</div>
+
     <div class="content-section">Let It Sink In...</div>
+
+    <div class="alt-section">🌫 A quiet moment drifts by...</div>
+
     <div class="content-section">A Moment to Breathe</div>
+
     <div class="content-section">Almost There...</div>
+
+    <div class="alt-section">🌌 The stars begin to shine through...</div>
+
     <div class="content-section">End of the Dream 🌙</div>
   </main>
 
@@ -81,8 +109,6 @@
     console.log("Script loaded.");
 
     window.addEventListener("scroll", () => {
-      console.log("Scroll detected!");
-
       const scrollTop = window.scrollY;
       const factor = 0.5;
       const yOffset = scrollTop * factor;
