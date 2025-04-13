@@ -80,16 +80,17 @@
   </main>
 
   <!-- Parallax Script -->
-  <script>
-    window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY;
-      const factor = 0.5; // Adjust for speed
-      const yOffset = scrollTop * factor;
+	<script>
+	  window.addEventListener("scroll", () => {
+		const scrollTop = window.scrollY;
+		console.log("ScrollY:", scrollTop); // 👈 Add this line
+		const factor = 0.5;
+		const yOffset = scrollTop * factor;
 
-      const bg = document.getElementById("parallax-background");
-      bg.style.transform = `translateY(-${yOffset}px)`;
-    });
-  </script>
+		const bg = document.getElementById("parallax-background");
+		bg.style.transform = `translateY(-${yOffset}px)`;
+	  });
+	</script>
 
 </body>
 </html>
