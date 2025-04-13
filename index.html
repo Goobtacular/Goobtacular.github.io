@@ -62,23 +62,44 @@
       font-size: 2rem;
     }
 
+	.techy-shape {
+	  clip-path: polygon(
+		5% 0%, 20% 0%, 22% 5%, 78% 5%, 80% 0%, 95% 0%,
+		100% 5%, 100% 20%, 95% 22%, 95% 78%, 100% 80%, 100% 95%,
+		95% 100%, 80% 100%, 78% 95%, 22% 95%, 20% 100%, 5% 100%,
+		0% 95%, 0% 80%, 5% 78%, 5% 22%, 0% 20%, 0% 5%
+	  );
+	  /* Optional smoothness */
+	  transition: clip-path 0.3s ease;
+	}
+
+	
     /* NEW ALTERNATE SECTION */
-    .alt-section {
-      height: 30vh;
-      width: 60%;
-      margin: 5vh auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      border-radius: 30px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-style: italic;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    }
+	.alt-section {
+	  height: 30vh;
+	  width: 60%;
+	  margin: 5vh auto;
+	  background-color: rgba(0, 0, 0, 0.6);
+	  color: white;
+	  padding: 1.5rem;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  font-size: 1.5rem;
+	  font-style: italic;
+	  text-align: center;
+	  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+
+	  /* techy outline */
+	  clip-path: polygon(
+		5% 0%, 20% 0%, 22% 5%, 78% 5%, 80% 0%, 95% 0%,
+		100% 5%, 100% 20%, 95% 22%, 95% 78%, 100% 80%, 100% 95%,
+		95% 100%, 80% 100%, 78% 95%, 22% 95%, 20% 100%, 5% 100%,
+		0% 95%, 0% 80%, 5% 78%, 5% 22%, 0% 20%, 0% 5%
+	  );
+	}
+	
+	
   </style>
 </head>
 <body>
