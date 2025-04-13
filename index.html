@@ -146,6 +146,11 @@
 
 	  animation: chatEnter 1s ease-out 0.3s both;
 
+	  opacity: 0;
+	  transform: translateX(-60%) scale(0.9);
+	  filter: blur(6px);
+	  transition: all 1s ease-out;
+	  
 	  /* Bigger tail + techy shape */
 	  clip-path: polygon(
 		8% 0%, 92% 0%, 96% 4%, 100% 12%,
@@ -154,6 +159,12 @@
 		10% 100%, 0% 96%, /* Enlarged tail */
 		10% 82%, 10% 18%
 	  );
+	}
+	
+	.chat-bubble-left.animate-in {
+	  opacity: 1;
+	  transform: translateX(0) scale(1);
+	  filter: blur(0);
 	}
 	
 	@keyframes chatEnter {
@@ -203,35 +214,54 @@
 
   </main>
 
-<script>
-  const bg = document.getElementById("parallax-background");
+	<script>
+	  const bg = document.getElementById("parallax-background");
 
-  function updateParallax() {
-    const scrollTop = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const maxTranslate = bg.offsetHeight - window.innerHeight;
+	  function updateParallax() {
+		const scrollTop = window.scrollY;
+		const maxScroll = document.body.scrollHeight - window.innerHeight;
+		const maxTranslate = bg.offsetHeight - window.innerHeight;
 
-    const progress = scrollTop / maxScroll;
-    const yOffset = progress * maxTranslate;
+		const progress = scrollTop / maxScroll;
+		const yOffset = progress * maxTranslate;
 
-    bg.style.transform = `translateY(-${yOffset}px)`;
-  }
+		bg.style.transform = `translateY(-${yOffset}px)`;
+	  }
 
-  function resizeParallaxBackground() {
-    const parallaxFactor = 0.5; // how "slow" the background scrolls
-    const pageHeight = document.body.scrollHeight;
-    const viewportHeight = window.innerHeight;
+	  function resizeParallaxBackground() {
+		const parallaxFactor = 0.5; // how "slow" the background scrolls
+		const pageHeight = document.body.scrollHeight;
+		const viewportHeight = window.innerHeight;
 
-    const imageHeight = viewportHeight + (pageHeight - viewportHeight) * parallaxFactor;
-    bg.style.height = `${imageHeight}px`;
+		const imageHeight = viewportHeight + (pageHeight - viewportHeight) * parallaxFactor;
+		bg.style.height = `${imageHeight}px`;
 
-    updateParallax(); // recalculate position after resize
-  }
+		updateParallax(); // recalculate position after resize
+	  }
 
-  window.addEventListener("scroll", updateParallax);
-  window.addEventListener("resize", resizeParallaxBackground);
-  window.addEventListener("load", resizeParallaxBackground);
-</script>
+	  window.addEventListener("scroll", updateParallax);
+	  window.addEventListener("resize", resizeParallaxBackground);
+	  window.addEventListener("load", resizeParallaxBackground);
+	</script>
+
+	<script>
+	  const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+		  if (entry.isIntersecting) {
+			entry.target.classList.add("animate-in");
+			observer.unobserve(entry.target); // animate only once
+		  }
+		});
+	  }, {
+		threshold: 0.3 // trigger when 30% visible
+	  });
+
+	  const chatBubble = document.querySelector(".chat-bubble-left");
+	  if (chatBubble) {
+		chatBubble.classList.remove("animate-in"); // reset if reloading
+		observer.observe(chatBubble);
+	  }
+	</script>
 
 </body>
 </html>
