@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Forevermore</title>
+  <title>Parallax Scroll</title>
   <style>
     * {
       margin: 0;
@@ -11,42 +11,64 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      height: 100%;
       font-family: sans-serif;
+      overflow-x: hidden;
     }
 
+    /* The parallax background */
     #main1 {
-      background-image: url("../docs/assets/ohwhatadream.png"); 
-      background-position: top center;
-      background-attachment: scroll;
-      background-size: cover;
-      height: 80vh;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100vh;
+      background-image: url("../docs/assets/ohwhatadream.png");
+      background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: -1;
     }
 
-    #placeholdersoyoucanscroll {
-      height: 50vh;
-      background: #f0f0f0;
+    /* Content Sections */
+    .content-section {
+      height: 100vh;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
     }
-	
-	
+
+    /* Optional styling for text */
+    .content-section:nth-child(even) {
+      background-color: rgba(240, 240, 240, 0.95);
+    }
   </style>
 </head>
 <body id="body">
+
+  <!-- Background -->
+  <div id="main1"></div>
+
+  <!-- Content -->
   <main>
-    <div id="main1"></div>
-    <div id="placeholdersoyoucanscroll"></div>
+    <div class="content-section">Welcome to the Dream</div>
+    <div class="content-section">Scroll Down for Magic</div>
+    <div class="content-section">Another Cool Section</div>
+    <div class="content-section">Almost There...</div>
+    <div class="content-section">End of the Dream 🌙</div>
   </main>
-  
 
   <script>
-    document.getElementById("body").onscroll = function () {
+    window.onscroll = function () {
       var scrolltotop = document.scrollingElement.scrollTop;
-      var target = document.getElementById("main1");
-      var xvalue = "center";
       var factor = 0.5;
       var yvalue = scrolltotop * factor;
-      target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+      var target = document.getElementById("main1");
+      target.style.backgroundPosition = "center " + yvalue + "px";
     };
   </script>
 </body>
