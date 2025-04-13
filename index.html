@@ -130,73 +130,26 @@
 	}
 	
 	.chat-bubble-left {
-	  height: 60vh;
-	  width: 80%;
-	  margin: 10vh auto;
-	  background-color: rgba(20, 20, 20, 0.85);
-	  color: #00ffff;
-	  padding: 2rem;
-	  font-size: 1.6rem;
-	  text-align: center;
+	  height: 30vh;
+	  width: 60%;
+	  margin: 5vh auto;
+	  background-color: rgba(10, 10, 10, 0.8);
+	  color: #00ffee;
+	  padding: 1.5rem;
+	  font-size: 1.4rem;
 	  font-family: monospace;
-	  font-style: normal;
+	  text-align: center;
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
-	  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-	  position: relative;
-	  z-index: 1;
-	  
-	  /* Techy chat bubble shape with a "tail" (triangle) */
-	  clip-path: polygon(
-		10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
-	  );
-	}
+	  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
 
-	.chat-bubble-left::after {
-	  content: '';
-	  position: absolute;
-	  bottom: -20px; /* Distance of the tail from the bubble */
-	  left: 50%;
-	  transform: translateX(-50%);
-	  border-width: 20px;
-	  border-style: solid;
-	  border-color: rgba(20, 20, 20, 0.85) transparent transparent transparent; /* Tail triangle */
-	}
-	
-	.chat-bubble-right {
-	  height: 60vh;
-	  width: 80%;
-	  margin: 10vh auto;
-	  background-color: rgba(20, 20, 20, 0.85);
-	  color: #00ffff;
-	  padding: 2rem;
-	  font-size: 1.6rem;
-	  text-align: center;
-	  font-family: monospace;
-	  font-style: normal;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-	  position: relative;
-	  z-index: 1;
-	  
-	  /* Techy chat bubble shape with a "tail" (triangle) */
+	  /* Complex chat bubble with tail (bottom-left) */
 	  clip-path: polygon(
-		10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
+		6% 0%, 94% 0%, 100% 6%, 100% 94%, 94% 100%,
+		30% 100%, 20% 100%, 18% 96%, 16% 92%, 12% 88%,
+		8% 86%, 0% 84%, 6% 78%, 6% 22%, 0% 16%, 6% 12%
 	  );
-	}
-	
-	.chat-bubble-right::after {
-	  content: '';
-	  position: absolute;
-	  top: -20px; /* Make the tail point upwards */
-	  left: 50%;
-	  transform: translateX(-50%);
-	  border-width: 20px;
-	  border-style: solid;
-	  border-color: transparent transparent rgba(20, 20, 20, 0.85) transparent; /* Tail points up */
 	}
 	
   </style>
@@ -217,6 +170,8 @@
     <div class="tech-section">🌫 A quiet moment drifts by...</div>
 
     <div class="content-section">A Moment to Breathe</div>
+	
+	<div class="chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
 
     <div class="content-section">Almost There...</div>
 
@@ -224,9 +179,6 @@
 
     <div class="content-section">End of the Dream 🌙</div>
 	
-	<div class="chat-bubble-left">👾 "This is a techy chat message!"</div>
-	
-	<div class="chat-bubble-right"> 🧑‍🦯 "This is a techy chat message! Deez nuts!"</div>
 
   </main>
 
