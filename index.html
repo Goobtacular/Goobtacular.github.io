@@ -149,7 +149,12 @@
       );
     }
 
-    .chat-bubble-left.animate-in,
+    .chat-bubble-left.animate-in {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
+    }
+
     .chat-bubble-right.animate-in {
       opacity: 1;
       transform: translateX(0) scale(1);
@@ -195,11 +200,15 @@
     <div class="tech-section">🌫 A quiet moment drifts by...</div>
     <div class="content-section">A Moment to Breathe</div>
 
-    <!-- Reusable chat bubbles -->
-    <div class="chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
-    <div class="chat-bubble-right">🧠 “Connection to dreamscape stabilized.”</div>
-    <div class="chat-bubble-left">🌙 “What you seek is also seeking you.”</div>
-    <div class="chat-bubble-right">✨ “Let the dream carry you.”</div>
+    <!-- Left Chat Bubble -->
+    <div class="chat-bubble-left">
+      <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
+    </div>
+
+    <!-- Right Chat Bubble -->
+    <div class="chat-bubble-right">
+      <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
+    </div>
 
     <div class="content-section">Almost There...</div>
     <div class="alt-section">🌌 The stars begin to shine through...</div>
@@ -250,28 +259,31 @@
     const chatObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const container = entry.target;
-        const originalText = container.dataset.originalText;
-
-        if (entry.isIntersecting && !container.classList.contains("animated")) {
-          container.classList.add("animate-in", "animated");
-
-          container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+        if (entry.isIntersecting) {
+          container.classList.add("animate-in");
 
           setTimeout(() => {
-            container.innerHTML = '';
+            const dots = container.querySelector(".typing-dots");
+            if (dots) dots.remove();
             const p = document.createElement("p");
             container.appendChild(p);
-            typeText(originalText, p);
+
+            const text = container.classList.contains("chat-bubble-left")
+              ? "🤖 “We are broadcasting from the mainframe…”"
+              : "🧠 “Connection to dreamscape stabilized.”";
+
+            typeText(text, p);
           }, 1800);
+        } else {
+          container.classList.remove("animate-in");
+          container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
         }
       });
-    }, { threshold: 0.3 });
-
-    chatBubbles.forEach(bubble => {
-      bubble.dataset.originalText = bubble.textContent.trim();
-      bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
-      chatObserver.observe(bubble);
+    }, {
+      threshold: 0.3
     });
+
+    chatBubbles.forEach(bubble => chatObserver.observe(bubble));
   </script>
 
 </body>
