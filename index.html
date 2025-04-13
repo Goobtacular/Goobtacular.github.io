@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Parallax Dream</title>
   <style>
-    {
+    /* Reset defaults */
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -13,48 +14,58 @@
 
     html, body {
       font-family: sans-serif;
-      background-color: rgba(255, 255, 255, 0.9);
-      /*color: #111;*/
+      background: transparent; /* This ensures the underlying background image shows through */
+      height: 100%;
+      overflow-x: hidden;
     }
 
-    /* Background image section */
+    /* Parallax background layer */
     #main1 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-image: url("../docs/assets/ohwhatadream.png");
       background-position: center 0;
       background-size: cover;
       background-repeat: no-repeat;
-      width: 100%;
-      height: 300vh; /* Tall enough to scroll through */
-      position: relative;
-      z-index: 0;
+      z-index: -1;
     }
 
-    /* Content boxes (white cards) */
+    /* Content container is layered above the background */
+    main {
+      position: relative;
+      z-index: 1;
+      /* Set the minimum height so the page is tall enough to scroll */
+      min-height: 400vh; /* Adjust this value if you add more or fewer sections */
+    }
+
+    /* Content sections (cards) */
     .content-section {
       height: 60vh;
       width: 80%;
-      margin: 2vh auto;
-      background-color: white;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin: 2vh auto;  /* You can adjust this vertical margin for spacing */
+      /* Change the background color to use opacity: */
+      background-color: rgba(255, 255, 255, 0.9);  /* The "0.9" here is the opacity factor */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
       padding: 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      z-index: 1;
-      position: relative;
     }
 
-    main {
-      position: relative;
-      z-index: 2;
+    /* Remove top margin for the first content section so it starts at the very top */
+    .content-section:first-child {
+      margin-top: 0;  /* <-- Change this value if you want extra offset at the top */
     }
   </style>
 </head>
-<body id="body">
+<body>
 
-  <!-- Background image layer -->
+  <!-- Parallax background layer -->
   <div id="main1"></div>
 
   <!-- Content overlaid on top -->
@@ -67,9 +78,10 @@
   </main>
 
   <script>
+    // Parallax scroll effect: Adjusts the background position as you scroll.
     window.addEventListener('scroll', function () {
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      var factor = 0.5;
+      var factor = 0.5; // <-- This factor controls how fast the background moves relative to scroll.
       var yvalue = scrollTop * factor;
       document.getElementById("main1").style.backgroundPosition = "center " + yvalue + "px";
     });
