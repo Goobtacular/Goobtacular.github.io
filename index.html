@@ -1,36 +1,50 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parallax Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+    body {
+      font-family: sans-serif;
+    }
 
-<style>body, html {    height: 100%;}
+    #main1 {
+      background-image: url('https://raw.githubusercontent.com/Goobtacular/Goobtacular.github.io/refs/heads/main/ohwhatadream.png');
+      background-position: top center;
+      background-attachment: scroll;
+      background-size: cover;
+      height: 80vh;
+      width: 100%;
+    }
 
-document.getElementById("body").onscroll = function myFunction() {  
-    var scrolltotop = document.scrollingElement.scrollTop;
-    var target = document.getElementById("main1");
-    var xvalue = "center";
-    var factor = 0.5;
-    var yvalue = scrolltotop * factor;
-    target.style.backgroundPosition = xvalue + " " + yvalue + "px";
-  }
-  
-#main1 {
-    background-image: url(https://raw.githubusercontent.com/Goobtacular/Goobtacular.github.io/refs/heads/main/ohwhatadream.png);
-    background-position: top center;
-    background-attachment:scroll;
-    background-size: cover;
-    height: 80vh;
-    width: 100%;
-}
-
-#placeholdersoyoucanscroll{
-    height:100vh
-}
-
+    #placeholdersoyoucanscroll {
+      height: 100vh;
+      background: #f0f0f0;
+    }
+  </style>
+</head>
 <body id="body">
-      <main>
-        <div id="main1">
-        </div>
-        <div id="placeholdersoyoucanscroll">
-        </div>
-    </main>
+  <main>
+    <div id="main1"></div>
+    <div id="placeholdersoyoucanscroll"></div>
+  </main>
+
+  <script>
+    document.getElementById("body").onscroll = function () {
+      var scrolltotop = document.scrollingElement.scrollTop;
+      var target = document.getElementById("main1");
+      var xvalue = "center";
+      var factor = 0.5;
+      var yvalue = scrolltotop * factor;
+      target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+    };
+  </script>
 </body>
+</html>
