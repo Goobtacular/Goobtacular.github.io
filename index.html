@@ -144,17 +144,34 @@
 	  justify-content: center;
 	  box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
 
-	  /* Techy chat bubble with single tail on bottom-left */
+	  animation: chatEnter 1s ease-out 0.3s both;
+
+	  /* Bigger tail + techy shape */
 	  clip-path: polygon(
 		8% 0%, 92% 0%, 96% 4%, 100% 12%,
 		100% 88%, 96% 96%, 92% 100%,
-		40% 100%, 38% 96%, 36% 92%,
-		30% 90%, 24% 88%, 18% 86%,
-		14% 84%, 12% 94%, 4% 92%, /* Tail */
+		42% 100%, 38% 94%, 32% 90%, 26% 88%, 18% 86%, 14% 84%,
+		10% 100%, 0% 96%, /* Enlarged tail */
 		10% 82%, 10% 18%
 	  );
 	}
 	
+	@keyframes chatEnter {
+	  0% {
+		opacity: 0;
+		transform: translateX(-60%) scale(0.9);
+		filter: blur(6px);
+	  }
+	  70% {
+		opacity: 1;
+		transform: translateX(2%) scale(1.02);
+		filter: blur(0);
+	  }
+	  100% {
+		transform: translateX(0) scale(1);
+	  }
+	}
+		
   </style>
 </head>
 <body>
