@@ -141,21 +141,12 @@
 
     .chat-bubble-left {
       transform: translateX(-60%) scale(0.9);
-      clip-path:  polygon(
-    6% 0%, 94% 0%,         /* top edge */
-    98% 5%, 100% 12%,      /* top-right curve */
-    100% 88%, 98% 95%,     /* right side */
-    94% 100%,              /* bottom-right corner */
-    35% 100%,              /* bottom edge before lightning */
-    32% 90%,               /* start of lightning zigzag */
-    26% 95%, 
-    22% 85%, 
-    18% 90%, 
-    14% 80%,              /* end of lightning zigzag */
-    10% 90%, 6% 100%,      /* base of tail */
-    2% 95%, 0% 88%,        /* left side */
-    0% 12%, 2% 5%, 6% 0%   /* top-left curve */
-  );
+      clip-path: polygon(
+        8% 0%, 92% 0%, 96% 4%, 100% 12%,
+        100% 88%, 96% 96%, 92% 100%,
+        42% 100%, 38% 94%, 32% 90%, 26% 88%, 18% 86%, 14% 84%,
+        10% 100%, -10% 92%, 10% 82%, 10% 18%
+      );
 	  
     }
 
