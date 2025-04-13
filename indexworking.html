@@ -61,16 +61,6 @@
       font-size: 2rem;
     }
 
-    .techy-shape {
-      clip-path: polygon(
-        5% 0%, 20% 0%, 22% 5%, 78% 5%, 80% 0%, 95% 0%,
-        100% 5%, 100% 20%, 95% 22%, 95% 78%, 100% 80%, 100% 95%,
-        95% 100%, 80% 100%, 78% 95%, 22% 95%, 20% 100%, 5% 100%,
-        0% 95%, 0% 80%, 5% 78%, 5% 22%, 0% 20%, 0% 5%
-      );
-      transition: clip-path 0.3s ease;
-    }
-
     .alt-section {
       height: 30vh;
       width: 60%;
@@ -120,11 +110,7 @@
       );
     }
 
-    .chat-bubble-left {
-      opacity: 0;
-      transform: translateX(-60%) scale(0.9);
-      filter: blur(6px);
-      transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+    .chat-bubble-left, .chat-bubble-right {
       height: 30vh;
       width: 60%;
       margin: 5vh auto;
@@ -138,6 +124,23 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
+      opacity: 0;
+      filter: blur(6px);
+      transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+    }
+
+    .chat-bubble-right {
+      transform: translateX(-60%) scale(0.9);
+      clip-path: polygon(
+        92% 0%, 8% 0%, 4% 4%, 0% 12%,
+        0% 88%, 4% 96%, 8% 100%,
+        58% 100%, 62% 94%, 68% 90%, 74% 88%, 82% 86%, 86% 84%,
+        90% 100%, 110% 92%, 90% 82%, 90% 18%
+      );
+    }
+
+    .chat-bubble-left {
+      transform: translateX(60%) scale(0.9);
       clip-path: polygon(
         8% 0%, 92% 0%, 96% 4%, 100% 12%,
         100% 88%, 96% 96%, 92% 100%,
@@ -147,6 +150,12 @@
     }
 
     .chat-bubble-left.animate-in {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
+    }
+
+    .chat-bubble-right.animate-in {
       opacity: 1;
       transform: translateX(0) scale(1);
       filter: blur(0);
@@ -190,9 +199,17 @@
     <div class="content-section">Let It Sink In...</div>
     <div class="tech-section">🌫 A quiet moment drifts by...</div>
     <div class="content-section">A Moment to Breathe</div>
+
+    <!-- Left Chat Bubble -->
     <div class="chat-bubble-left">
       <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
     </div>
+
+    <!-- Right Chat Bubble -->
+    <div class="chat-bubble-right">
+      <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
+    </div>
+
     <div class="content-section">Almost There...</div>
     <div class="alt-section">🌌 The stars begin to shine through...</div>
     <div class="content-section">End of the Dream 🌙</div>
@@ -225,10 +242,6 @@
   </script>
 
   <script>
-    const chatText = "🤖 “We are broadcasting from the mainframe…”";
-    const chatContainer = document.querySelector(".chat-bubble-left");
-    const dots = chatContainer.querySelector(".typing-dots");
-
     const typeText = (text, target, speed = 40) => {
       let i = 0;
       const interval = setInterval(() => {
@@ -241,27 +254,36 @@
       }, speed);
     };
 
+    const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right');
+
     const chatObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const container = entry.target;
         if (entry.isIntersecting) {
-          chatContainer.classList.add("animate-in");
+          container.classList.add("animate-in");
 
           setTimeout(() => {
-            dots.remove();
+            const dots = container.querySelector(".typing-dots");
+            if (dots) dots.remove();
             const p = document.createElement("p");
-            chatContainer.appendChild(p);
-            typeText(chatText, p);
+            container.appendChild(p);
+
+            const text = container.classList.contains("chat-bubble-left")
+              ? "🤖 “We are broadcasting from the mainframe…”"
+              : "🧠 “Connection to dreamscape stabilized.”";
+
+            typeText(text, p);
           }, 1800);
         } else {
-          chatContainer.classList.remove("animate-in");
-          chatContainer.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+          container.classList.remove("animate-in");
+          container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
         }
       });
     }, {
       threshold: 0.3
     });
 
-    chatObserver.observe(chatContainer);
+    chatBubbles.forEach(bubble => chatObserver.observe(bubble));
   </script>
 
 </body>
