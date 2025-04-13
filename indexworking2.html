@@ -27,18 +27,18 @@
       z-index: -1;
     }
 
-	#parallax-background {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 200vh; /* start with enough room for scroll */
-	  background-image: url("https://picsum.photos/1024/1536");
-	  background-size: cover;
-	  background-repeat: no-repeat;
-	  background-position: center top;
-	  will-change: transform;
-	}
+    #parallax-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 300vh;
+      background-image: url("https://picsum.photos/1024/1536");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+      will-change: transform;
+    }
 
     main {
       position: relative;
@@ -105,29 +105,20 @@
     <div class="content-section">End of the Dream 🌙</div>
   </main>
 
-	<script>
-	  console.log("Script loaded.");
+  <script>
+    console.log("Script loaded.");
 
-	  const bg = document.getElementById("parallax-background");
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const factor = 0.5;
+      const yOffset = scrollTop * factor;
 
-	  function updateParallax() {
-		const scrollTop = window.scrollY;
-		const maxScroll = document.body.scrollHeight - window.innerHeight;
-
-		const maxTranslate = bg.offsetHeight - window.innerHeight;
-
-		const progress = scrollTop / maxScroll;
-		const yOffset = progress * maxTranslate;
-
-		if (bg) {
-		  bg.style.transform = `translateY(-${yOffset}px)`;
-		}
-	  }
-
-	  window.addEventListener("scroll", updateParallax);
-	  window.addEventListener("resize", updateParallax);
-	  window.addEventListener("load", updateParallax);
-	</script>
+      const bg = document.getElementById("parallax-background");
+      if (bg) {
+        bg.style.transform = `translateY(-${yOffset}px)`;
+      }
+    });
+  </script>
 
 </body>
 </html>
