@@ -129,6 +129,76 @@
 	  );
 	}
 	
+	.chat-bubble-left {
+	  height: 60vh;
+	  width: 80%;
+	  margin: 10vh auto;
+	  background-color: rgba(20, 20, 20, 0.85);
+	  color: #00ffff;
+	  padding: 2rem;
+	  font-size: 1.6rem;
+	  text-align: center;
+	  font-family: monospace;
+	  font-style: normal;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+	  position: relative;
+	  z-index: 1;
+	  
+	  /* Techy chat bubble shape with a "tail" (triangle) */
+	  clip-path: polygon(
+		10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
+	  );
+	}
+
+	.chat-bubble-left::after {
+	  content: '';
+	  position: absolute;
+	  bottom: -20px; /* Distance of the tail from the bubble */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  border-width: 20px;
+	  border-style: solid;
+	  border-color: rgba(20, 20, 20, 0.85) transparent transparent transparent; /* Tail triangle */
+	}
+	
+	.chat-bubble-right {
+	  height: 60vh;
+	  width: 80%;
+	  margin: 10vh auto;
+	  background-color: rgba(20, 20, 20, 0.85);
+	  color: #00ffff;
+	  padding: 2rem;
+	  font-size: 1.6rem;
+	  text-align: center;
+	  font-family: monospace;
+	  font-style: normal;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+	  position: relative;
+	  z-index: 1;
+	  
+	  /* Techy chat bubble shape with a "tail" (triangle) */
+	  clip-path: polygon(
+		10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
+	  );
+	}
+	
+	.chat-bubble-right::after {
+	  content: '';
+	  position: absolute;
+	  top: -20px; /* Make the tail point upwards */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  border-width: 20px;
+	  border-style: solid;
+	  border-color: transparent transparent rgba(20, 20, 20, 0.85) transparent; /* Tail points up */
+	}
+	
   </style>
 </head>
 <body>
@@ -153,6 +223,10 @@
     <div class="alt-section">🌌 The stars begin to shine through...</div>
 
     <div class="content-section">End of the Dream 🌙</div>
+	
+	<div class=".chat-bubble-left">👾 "This is a techy chat message!"</div>
+	
+	<div class=".chat-bubble-right">👾 "This is a techy chat message! Deez nuts!"</div>
 
   </main>
 
