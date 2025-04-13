@@ -81,7 +81,7 @@
     // Parallax scroll effect: Adjusts the background position as you scroll.
     window.addEventListener('scroll', function () {
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      var factor = 0.5; // <-- This factor controls how fast the background moves relative to scroll.
+      var factor = 2.5; // <-- This factor controls how fast the background moves relative to scroll.
       var yvalue = scrollTop * factor;
       document.getElementById("main1").style.backgroundPosition = "center " + yvalue + "px";
     });
