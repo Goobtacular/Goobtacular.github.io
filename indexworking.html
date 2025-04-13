@@ -130,7 +130,7 @@
     }
 
     .chat-bubble-right {
-      transform: translateX(-60%) scale(0.9);
+      transform: translateX(60%) scale(0.9);one 
       clip-path: polygon(
         92% 0%, 8% 0%, 4% 4%, 0% 12%,
         0% 88%, 4% 96%, 8% 100%,
@@ -140,7 +140,7 @@
     }
 
     .chat-bubble-left {
-      transform: translateX(60%) scale(0.9);
+      transform: translateX(-60%) scale(0.9);
       clip-path: polygon(
         8% 0%, 92% 0%, 96% 4%, 100% 12%,
         100% 88%, 96% 96%, 92% 100%,
@@ -169,7 +169,7 @@
     }
 
     .typing-dots span {
-      animation: blink 1.2s infinite;
+      animation: blink 2.7s infinite;
     }
 
     .typing-dots span:nth-child(2) {
@@ -273,7 +273,7 @@
               : "🧠 “Connection to dreamscape stabilized.”";
 
             typeText(text, p);
-          }, 1800);
+          }, 3300);
         } else {
           container.classList.remove("animate-in");
           container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
