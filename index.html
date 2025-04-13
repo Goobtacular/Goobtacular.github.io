@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Parallax Scroll</title>
+  <title>Parallax Dream</title>
   <style>
     * {
       margin: 0;
@@ -12,64 +12,68 @@
     }
 
     html, body {
-      height: 100%;
       font-family: sans-serif;
-      overflow-x: hidden;
+      background-color: #000;
+      color: #111;
     }
 
-    /* The parallax background */
+    /* Background image section */
     #main1 {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-image: url("../docs/assets/ohwhatadream.png");
-      background-position: center top;
+      background-image: url('https://raw.githubusercontent.com/Goobtacular/Goobtacular.github.io/refs/heads/main/ohwhatadream.png');
+      background-position: center 0;
       background-size: cover;
       background-repeat: no-repeat;
+      width: 100%;
+      height: 300vh; /* Tall enough to scroll through */
+      position: relative;
       z-index: -1;
     }
 
-    /* Content Sections */
+    /* Content boxes (white cards) */
     .content-section {
-      height: 100vh;
+      height: 60vh;
+      width: 80%;
+      margin: 10vh auto;
+      background-color: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
       padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
+      z-index: 1;
+      position: relative;
     }
 
-    /* Optional styling for text */
-    .content-section:nth-child(even) {
-      background-color: rgba(240, 240, 240, 0.95);
+    main {
+      position: relative;
+      z-index: 2;
     }
   </style>
 </head>
 <body id="body">
 
-  <!-- Background -->
+  <!-- Background image layer -->
   <div id="main1"></div>
 
-  <!-- Content -->
+  <!-- Content overlaid on top -->
   <main>
     <div class="content-section">Welcome to the Dream</div>
-    <div class="content-section">Scroll Down for Magic</div>
-    <div class="content-section">Another Cool Section</div>
+    <div class="content-section">Let It Sink In...</div>
+    <div class="content-section">A Moment to Breathe</div>
     <div class="content-section">Almost There...</div>
     <div class="content-section">End of the Dream 🌙</div>
   </main>
 
   <script>
-    window.onscroll = function () {
-      var scrolltotop = document.scrollingElement.scrollTop;
+    window.addEventListener('scroll', function () {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       var factor = 0.5;
-      var yvalue = scrolltotop * factor;
-      var target = document.getElementById("main1");
-      target.style.backgroundPosition = "center " + yvalue + "px";
-    };
+      var yvalue = scrollTop * factor;
+      document.getElementById("main1").style.backgroundPosition = "center " + yvalue + "px";
+    });
   </script>
+
 </body>
 </html>
