@@ -12,12 +12,12 @@
     }
 
     html, body {
-      height: 100%;
+      height: auto;
+      min-height: 100%;
       overflow-x: hidden;
       font-family: sans-serif;
     }
 
-    /* Background container - full screen, doesn't clip */
     #parallax-container {
       position: fixed;
       top: 0;
@@ -27,7 +27,6 @@
       z-index: -1;
     }
 
-    /* The background image itself */
     #parallax-background {
       position: absolute;
       top: 0;
@@ -46,6 +45,7 @@
       z-index: 1;
       min-height: 400vh;
       padding-top: 5vh;
+      padding-bottom: 50vh;
     }
 
     .content-section {
@@ -65,37 +65,34 @@
 </head>
 <body>
 
-	<!-- Background -->
-	<div id="parallax-container">
-	<div id="parallax-background"></div>
-	</div>
+  <div id="parallax-container">
+    <div id="parallax-background"></div>
+  </div>
 
-	<!-- Foreground content -->
-	<main>
-	<div class="content-section">Welcome to the Dream</div>
-	<div class="content-section">Let It Sink In...</div>
-	<div class="content-section">A Moment to Breathe</div>
-	<div class="content-section">Almost There...</div>
-	<div class="content-section">End of the Dream 🌙</div>
-	</main>
+  <main>
+    <div class="content-section">Welcome to the Dream</div>
+    <div class="content-section">Let It Sink In...</div>
+    <div class="content-section">A Moment to Breathe</div>
+    <div class="content-section">Almost There...</div>
+    <div class="content-section">End of the Dream 🌙</div>
+  </main>
 
-  <!-- Parallax Script -->
-	<script>
-	  console.log("Script loaded."); // Should appear even before scrolling
+  <script>
+    console.log("Script loaded.");
 
-	  window.addEventListener("scroll", () => {
-		console.log("Scroll detected!"); // Should appear as you scroll
+    window.addEventListener("scroll", () => {
+      console.log("Scroll detected!");
 
-		const scrollTop = window.scrollY;
-		const factor = 0.5;
-		const yOffset = scrollTop * factor;
+      const scrollTop = window.scrollY;
+      const factor = 0.5;
+      const yOffset = scrollTop * factor;
 
-		const bg = document.getElementById("parallax-background");
-		if (bg) {
-		  bg.style.transform = `translateY(-${yOffset}px)`;
-		}
-	  });
-	</script>
+      const bg = document.getElementById("parallax-background");
+      if (bg) {
+        bg.style.transform = `translateY(-${yOffset}px)`;
+      }
+    });
+  </script>
 
 </body>
 </html>
