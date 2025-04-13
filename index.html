@@ -16,6 +16,7 @@
       min-height: 100%;
       overflow-x: hidden;
       font-family: sans-serif;
+      background-color: #000; /* enhances tech contrast */
     }
 
     #parallax-container {
@@ -27,18 +28,18 @@
       z-index: -1;
     }
 
-	#parallax-background {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  /* height: 300vh; <- delete this */
-	  background-image: url("https://picsum.photos/1024/1536");
-	  background-size: cover;
-	  background-repeat: no-repeat;
-	  background-position: center top;
-	  will-change: transform;
-	}
+    #parallax-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 400vh; /* perfectly scrolls */
+      background-image: url("https://picsum.photos/1024/1536");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+      will-change: transform;
+    }
 
     main {
       position: relative;
@@ -62,79 +63,71 @@
       font-size: 2rem;
     }
 
-    /* NEW ALTERNATE SECTION */
-    .alt-section {
-      height: 30vh;
-      width: 60%;
-      margin: 5vh auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      border-radius: 30px;
-      padding: 1.5rem;
+    .tech-frame-section {
+      width: 60vw;
+      height: 60vh;
+      margin: 10vh auto;
+      background: rgba(0, 255, 255, 0.08); /* visible if mask fails */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      font-style: italic;
+      font-size: 1.8rem;
+      color: #0ff;
+      padding: 2rem;
       text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+
+      mask-image: url('../docs/assets/outline_tech.png');
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+
+      -webkit-mask-image: url('../docs/assets/outline_tech.png');
+      -webkit-mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+
+      background-color: #001c1c;
+      box-shadow: 0 0 30px #0ff7, inset 0 0 10px #0ff4;
     }
   </style>
 </head>
 <body>
 
+  <!-- Parallax Background -->
   <div id="parallax-container">
     <div id="parallax-background"></div>
   </div>
 
+  <!-- Foreground Content -->
   <main>
     <div class="content-section">Welcome to the Dream</div>
-
-    <div class="alt-section">"Sometimes the in-between is the most important part."</div>
-
     <div class="content-section">Let It Sink In...</div>
 
-    <div class="alt-section">🌫 A quiet moment drifts by...</div>
+    <!-- Tech Frame Section -->
+    <div class="tech-frame-section">
+      🤖 Generative Intelligence: Synthesizing Possibilities
+    </div>
 
     <div class="content-section">A Moment to Breathe</div>
-
     <div class="content-section">Almost There...</div>
-
-    <div class="alt-section">🌌 The stars begin to shine through...</div>
-
     <div class="content-section">End of the Dream 🌙</div>
-
   </main>
 
-<script>
-  const bg = document.getElementById("parallax-background");
+  <!-- Parallax Script -->
+  <script>
+    console.log("Script loaded.");
 
-  function updateParallax() {
-    const scrollTop = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const maxTranslate = bg.offsetHeight - window.innerHeight;
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const factor = 0.5;
+      const yOffset = scrollTop * factor;
 
-    const progress = scrollTop / maxScroll;
-    const yOffset = progress * maxTranslate;
-
-    bg.style.transform = `translateY(-${yOffset}px)`;
-  }
-
-  function resizeParallaxBackground() {
-    const parallaxFactor = 0.5; // how "slow" the background scrolls
-    const pageHeight = document.body.scrollHeight;
-    const viewportHeight = window.innerHeight;
-
-    const imageHeight = viewportHeight + (pageHeight - viewportHeight) * parallaxFactor;
-    bg.style.height = `${imageHeight}px`;
-
-    updateParallax(); // recalculate position after resize
-  }
-
-  window.addEventListener("scroll", updateParallax);
-  window.addEventListener("resize", resizeParallaxBackground);
-  window.addEventListener("load", resizeParallaxBackground);
-</script>
+      const bg = document.getElementById("parallax-background");
+      if (bg) {
+        bg.style.transform = `translateY(-${yOffset}px)`;
+      }
+    });
+  </script>
 
 </body>
 </html>
