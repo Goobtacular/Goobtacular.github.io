@@ -18,15 +18,15 @@
       background: transparent;
     }
 
-    /* Fixed background container */
+    /* Fixed background container (no overflow hidden here!) */
     #parallax-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
-      overflow: hidden;
+      height: 100%;
       z-index: -1;
+      pointer-events: none;
     }
 
     /* Inner background image that moves */
@@ -35,21 +35,18 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 300vh;
-	  
-      /* background-image: url("../docs/assets/ohwhatadream.png"); */
-	  background-image: url("https://picsum.photos/1024/1536");
+      height: 300vh; /* Tall image for scrolling effect */
+      background-image: url("https://picsum.photos/1024/1536");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center top;
       will-change: transform;
-      transition: transform 0.05s linear;
     }
 
     main {
       position: relative;
       z-index: 1;
-      padding-bottom: 20vh;
+      min-height: 400vh;
     }
 
     .content-section {
@@ -88,7 +85,7 @@
   </main>
 
   <script>
-    // Make sure the background moves as you scroll
+    // Parallax effect
     window.addEventListener("scroll", () => {
       const scrollTop = window.scrollY;
       const factor = 0.5;
