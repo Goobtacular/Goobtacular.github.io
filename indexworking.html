@@ -33,7 +33,7 @@
 	  left: 0;
 	  width: 100%;
 	  /* height: 300vh; <- delete this */
-	  background-image: url("https://picsum.photos/1024/1536");
+	  background-image: url("https://picsum.photos/1024/3096");
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  background-position: center top;
@@ -62,23 +62,109 @@
       font-size: 2rem;
     }
 
+	.techy-shape {
+	  clip-path: polygon(
+		5% 0%, 20% 0%, 22% 5%, 78% 5%, 80% 0%, 95% 0%,
+		100% 5%, 100% 20%, 95% 22%, 95% 78%, 100% 80%, 100% 95%,
+		95% 100%, 80% 100%, 78% 95%, 22% 95%, 20% 100%, 5% 100%,
+		0% 95%, 0% 80%, 5% 78%, 5% 22%, 0% 20%, 0% 5%
+	  );
+	  /* Optional smoothness */
+	  transition: clip-path 0.3s ease;
+	}
+
+	
     /* NEW ALTERNATE SECTION */
-    .alt-section {
-      height: 30vh;
-      width: 60%;
-      margin: 5vh auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      border-radius: 30px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-style: italic;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    }
+	.alt-section {
+	  height: 30vh;
+	  width: 60%;
+	  margin: 5vh auto;
+	  background-color: rgba(0, 0, 0, 0.6);
+	  color: white;
+	  padding: 1.5rem;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  font-size: 1.5rem;
+	  font-style: italic;
+	  text-align: center;
+	  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+
+	  /* techy outline */
+	  clip-path: polygon(
+		5% 0%, 20% 0%, 22% 5%, 78% 5%, 80% 0%, 95% 0%,
+		100% 5%, 100% 20%, 95% 22%, 95% 78%, 100% 80%, 100% 95%,
+		95% 100%, 80% 100%, 78% 95%, 22% 95%, 20% 100%, 5% 100%,
+		0% 95%, 0% 80%, 5% 78%, 5% 22%, 0% 20%, 0% 5%
+	  );
+	}
+	
+	.tech-section {
+	  height: 60vh;
+	  width: 80%;
+	  margin: 10vh auto;
+	  background-color: rgba(30, 30, 30, 0.85);
+	  color: #00ffff;
+	  padding: 2rem;
+	  font-size: 1.6rem;
+	  text-align: center;
+	  font-family: monospace;
+	  font-style: normal;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+	  position: relative;
+	  z-index: 1;
+
+	  /* Futuristic complex shape */
+	  clip-path: polygon(
+		8% 0%, 12% 6%, 20% 6%, 22% 0%,
+		78% 0%, 80% 6%, 88% 6%, 92% 0%,
+		100% 0%, 100% 10%, 94% 12%, 94% 88%,
+		100% 90%, 100% 100%, 92% 100%, 88% 94%,
+		80% 94%, 78% 100%, 22% 100%, 20% 94%,
+		12% 94%, 8% 100%, 0% 100%, 0% 90%,
+		6% 88%, 6% 12%, 0% 10%, 0% 0%
+	  );
+	}
+	
+	.chat-bubble-left {
+	  opacity: 0;
+	  transform: translateX(-60%) scale(0.9);
+	  filter: blur(6px);
+	  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+
+	  height: 30vh;
+	  width: 60%;
+	  margin: 5vh auto;
+	  background-color: rgba(10, 10, 10, 0.85);
+	  color: #00ffee;
+	  padding: 1.5rem;
+	  font-size: 1.4rem;
+	  font-family: monospace;
+	  text-align: center;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
+
+	  /* Updated with a bigger tail */
+	  clip-path: polygon(
+		8% 0%, 92% 0%, 96% 4%, 100% 12%,
+		100% 88%, 96% 96%, 92% 100%,
+		42% 100%, 38% 94%, 32% 90%, 26% 88%, 18% 86%, 14% 84%,
+		10% 100%, -10% 92%, 10% 82%, 10% 18%
+	  );
+	}
+
+	.chat-bubble-left.animate-in {
+	  opacity: 1;
+	  transform: translateX(0) scale(1);
+	  filter: blur(0);
+	}
+	
+		
   </style>
 </head>
 <body>
@@ -94,47 +180,76 @@
 
     <div class="content-section">Let It Sink In...</div>
 
-    <div class="alt-section">🌫 A quiet moment drifts by...</div>
+    <div class="tech-section">🌫 A quiet moment drifts by...</div>
 
     <div class="content-section">A Moment to Breathe</div>
+	
+	<div class="chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
 
     <div class="content-section">Almost There...</div>
 
     <div class="alt-section">🌌 The stars begin to shine through...</div>
 
     <div class="content-section">End of the Dream 🌙</div>
+	
+	
 
   </main>
 
-<script>
-  const bg = document.getElementById("parallax-background");
+	<script>
+	  const bg = document.getElementById("parallax-background");
 
-  function updateParallax() {
-    const scrollTop = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const maxTranslate = bg.offsetHeight - window.innerHeight;
+	  function updateParallax() {
+		const scrollTop = window.scrollY;
+		const maxScroll = document.body.scrollHeight - window.innerHeight;
+		const maxTranslate = bg.offsetHeight - window.innerHeight;
 
-    const progress = scrollTop / maxScroll;
-    const yOffset = progress * maxTranslate;
+		const progress = scrollTop / maxScroll;
+		const yOffset = progress * maxTranslate;
 
-    bg.style.transform = `translateY(-${yOffset}px)`;
-  }
+		bg.style.transform = `translateY(-${yOffset}px)`;
+	  }
 
-  function resizeParallaxBackground() {
-    const parallaxFactor = 0.5; // how "slow" the background scrolls
-    const pageHeight = document.body.scrollHeight;
-    const viewportHeight = window.innerHeight;
+	  function resizeParallaxBackground() {
+		const parallaxFactor = 0.5; // how "slow" the background scrolls
+		const pageHeight = document.body.scrollHeight;
+		const viewportHeight = window.innerHeight;
 
-    const imageHeight = viewportHeight + (pageHeight - viewportHeight) * parallaxFactor;
-    bg.style.height = `${imageHeight}px`;
+		const imageHeight = viewportHeight + (pageHeight - viewportHeight) * parallaxFactor;
+		bg.style.height = `${imageHeight}px`;
 
-    updateParallax(); // recalculate position after resize
-  }
+		updateParallax(); // recalculate position after resize
+	  }
 
-  window.addEventListener("scroll", updateParallax);
-  window.addEventListener("resize", resizeParallaxBackground);
-  window.addEventListener("load", resizeParallaxBackground);
-</script>
+	  window.addEventListener("scroll", updateParallax);
+	  window.addEventListener("resize", resizeParallaxBackground);
+	  window.addEventListener("load", resizeParallaxBackground);
+	</script>
+
+	<script>
+	  const chatBubble = document.querySelector(".chat-bubble-left");
+
+	  const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+		  const el = entry.target;
+		  if (entry.isIntersecting) {
+			// Force restart the transition by removing and re-adding the class
+			el.classList.remove("animate-in");
+			// Force reflow to flush the removal
+			void el.offsetWidth;
+			el.classList.add("animate-in");
+		  } else {
+			el.classList.remove("animate-in");
+		  }
+		});
+	  }, {
+		threshold: 0.3
+	  });
+
+	  if (chatBubble) {
+		observer.observe(chatBubble);
+	  }
+	</script>
 
 </body>
 </html>
