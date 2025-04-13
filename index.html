@@ -99,11 +99,34 @@
 	  );
 	}
 	
-	.alt-section.techy-shape {
-	  border: 1px solid rgba(0, 255, 255, 0.4);
-	  background: linear-gradient(145deg, rgba(0, 0, 0, 0.7), rgba(25, 25, 50, 0.6));
-	  backdrop-filter: blur(3px);
-	  text-shadow: 0 0 5px cyan;
+	.tech-section {
+	  height: 60vh;
+	  width: 80%;
+	  margin: 10vh auto;
+	  background-color: rgba(30, 30, 30, 0.85);
+	  color: #00ffff;
+	  padding: 2rem;
+	  font-size: 1.6rem;
+	  text-align: center;
+	  font-family: monospace;
+	  font-style: normal;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+	  position: relative;
+	  z-index: 1;
+
+	  /* Futuristic complex shape */
+	  clip-path: polygon(
+		8% 0%, 12% 6%, 20% 6%, 22% 0%,
+		78% 0%, 80% 6%, 88% 6%, 92% 0%,
+		100% 0%, 100% 10%, 94% 12%, 94% 88%,
+		100% 90%, 100% 100%, 92% 100%, 88% 94%,
+		80% 94%, 78% 100%, 22% 100%, 20% 94%,
+		12% 94%, 8% 100%, 0% 100%, 0% 90%,
+		6% 88%, 6% 12%, 0% 10%, 0% 0%
+	  );
 	}
 	
   </style>
@@ -121,7 +144,7 @@
 
     <div class="content-section">Let It Sink In...</div>
 
-    <div class="alt-section.techy-shape">🌫 A quiet moment drifts by...</div>
+    <div class="tech-section">🌫 A quiet moment drifts by...</div>
 
     <div class="content-section">A Moment to Breathe</div>
 
