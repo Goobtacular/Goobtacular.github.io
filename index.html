@@ -121,6 +121,7 @@
       font-family: monospace;
       text-align: center;
       display: flex;
+	  flex-direction: column;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
@@ -260,11 +261,11 @@
 		  container.appendChild(dots);
 
 		  setTimeout(() => {
-			container.innerHTML = ""; // 🔧 this line clears everything including dots
-			const p = document.createElement("p");
-			container.appendChild(p);
-			typeText(message, p);
-		  }, 3300);
+			  const p = document.createElement("p");
+			  container.innerHTML = ""; // now that p is ready, clear & add
+			  container.appendChild(p);
+			  typeText(message, p);
+			}, 3300);
 		} else {
 		  container.classList.remove("animate-in");
 		  container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
