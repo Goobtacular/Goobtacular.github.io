@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <title>Parallax Dream</title>
   <style>
     * {
@@ -181,6 +182,96 @@
       filter: blur(0);
     }
 
+	.chat-bubble-highdetail {
+	  position: relative;
+	  width: 65%;
+	  margin: 6vh auto;
+	  padding: 2rem 2.5rem;
+	  background: linear-gradient(to bottom right, #0e0e0e, #1c1c1c);
+	  color: #00ffd5;
+	  font-family: "Share Tech Mono", monospace;
+	  font-size: 1.2rem;
+	  text-align: center;
+	  text-transform: uppercase;
+	  letter-spacing: 1.5px;
+
+	  /* Outer frame with multi-layered glow */
+	  border: 2px solid #00ffd5;
+	  box-shadow:
+		0 0 10px rgba(0, 255, 213, 0.4),
+		inset 0 0 5px rgba(0, 255, 213, 0.2),
+		0 0 30px rgba(0, 255, 213, 0.1);
+
+	  clip-path: polygon(
+		4% 0%, 96% 0%, 100% 10%, 100% 90%,
+		96% 100%, 4% 100%, 0% 90%, 0% 10%
+	  );
+
+	  /* Decorative inner border effect using pseudo-element */
+	  --frame-color: #00ffd5;
+	  --frame-glow: rgba(0, 255, 213, 0.3);
+	  --frame-offset: 10px;
+
+	  opacity: 0;
+	  transform: scale(0.9);
+	  transition:
+		opacity 0.9s ease-out,
+		transform 0.9s ease-out,
+		box-shadow 0.9s ease-out;
+	}
+
+	.chat-bubble-highdetail::before {
+	  content: "";
+	  position: absolute;
+	  top: var(--frame-offset);
+	  bottom: var(--frame-offset);
+	  left: var(--frame-offset);
+	  right: var(--frame-offset);
+	  border: 1px dashed var(--frame-color);
+	  opacity: 0.3;
+	  clip-path: polygon(
+		6% 0%, 94% 0%, 98% 10%, 98% 90%,
+		94% 100%, 6% 100%, 2% 90%, 2% 10%
+	  );
+	  pointer-events: none;
+	}
+
+	/* Glowing animated pulse ring */
+	.chat-bubble-highdetail::after {
+	  content: "";
+	  position: absolute;
+	  top: -12px;
+	  bottom: -12px;
+	  left: -12px;
+	  right: -12px;
+	  border: 2px solid transparent;
+	  border-radius: 12px;
+	  animation: pulseBorder 3s infinite ease-in-out;
+	  pointer-events: none;
+	}
+
+	@keyframes pulseBorder {
+	  0% {
+		box-shadow: 0 0 0px rgba(0, 255, 213, 0.2);
+	  }
+	  50% {
+		box-shadow: 0 0 18px rgba(0, 255, 213, 0.45);
+	  }
+	  100% {
+		box-shadow: 0 0 0px rgba(0, 255, 213, 0.2);
+	  }
+	}
+
+	/* Scroll-triggered animation */
+	.chat-bubble-highdetail.animate-in {
+	  opacity: 1;
+	  transform: scale(1);
+	  box-shadow:
+		0 0 16px rgba(0, 255, 213, 0.5),
+		inset 0 0 8px rgba(0, 255, 213, 0.3),
+		0 0 40px rgba(0, 255, 213, 0.2);
+	}
+
     .typing-dots {
       display: inline-block;
       vertical-align: middle;
@@ -221,7 +312,9 @@
     <div class="content-section">A Moment to Breathe</div>
 
     <div class="chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
-	<div class="chat-bubble-right">🧠 “Connection to dreamscape stabilized.”</div>
+	
+	<div class="chat-bubble-highdetail">🧠 “Connection to dreamscape established. Enforcing dominion..”</div>
+
 	<div class="chat-bubble-left">🌌 “Stars align beyond the firewalls…”</div>
 
     <div class="content-section">Almost There...</div>
