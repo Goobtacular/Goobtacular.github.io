@@ -196,8 +196,10 @@
 	  align-items: center;
 	  justify-content: center;
 
-	  -webkit-mask-image: url("../docs/assets/fascist-mask.svg");
-	  mask-image: url("../docs/assets/fascist-mask.svg");
+	  /* ✅ CORRECTED path to local SVG */
+	  -webkit-mask-image: url("assets/fascist-mask.svg");
+	  mask-image: url("assets/fascist-mask.svg");
+
 	  -webkit-mask-repeat: no-repeat;
 	  mask-repeat: no-repeat;
 	  -webkit-mask-size: contain;
@@ -209,15 +211,6 @@
 		0 0 20px rgba(0, 255, 213, 0.4),
 		inset 0 0 8px rgba(0, 255, 213, 0.2);
 
-	  transition: all 0.9s ease-out;
-	  opacity: 0;
-	  filter: blur(6px);
-	  transform: translateX(-60%) scale(0.9);
-	}
-
-	  box-shadow:
-		0 0 20px rgba(0, 255, 213, 0.4),
-		inset 0 0 8px rgba(0, 255, 213, 0.2);
 	  transition: all 0.9s ease-out;
 	  opacity: 0;
 	  filter: blur(6px);
