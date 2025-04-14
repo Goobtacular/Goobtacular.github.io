@@ -130,23 +130,30 @@
     }
 
     .chat-bubble-right {
-      transform: translateX(60%) scale(0.9);one 
+      transform: translateX(60%) scale(0.9); 
       clip-path: polygon(
-        92% 0%, 8% 0%, 4% 4%, 0% 12%,
-        0% 88%, 4% 96%, 8% 100%,
-        58% 100%, 62% 94%, 68% 90%, 74% 88%, 82% 86%, 86% 84%,
-        90% 100%, 110% 92%, 90% 82%, 90% 18%
-      );
+		0% 20%, /* top-left */
+		10% 0%, /* slight curve top */
+		90% 0%, /* top-right */
+		100% 20%, /* right curve */
+		100% 80%, /* bottom-right */
+		90% 100%, /* bottom curve */
+		20% 100%, /* bottom-left */
+		15% 90%, /* lightning base */
+		25% 80%, /* lightning zig */
+		10% 70%, /* lightning zag */
+		20% 60%, /* lightning end */
+		0% 80% /* connect back */
+	  );
     }
 
     .chat-bubble-left {
       transform: translateX(-60%) scale(0.9);
       clip-path: polygon(
-        8% 0%, 92% 0%, 96% 4%, 100% 12%,
-        100% 88%, 96% 96%, 92% 100%,
-        42% 100%, 38% 94%, 32% 90%, 26% 88%, 18% 86%, 14% 84%,
-        10% 100%, -10% 92%, 10% 82%, 10% 18%
-      );
+		5% 0%, 95% 0%, 95% 100%, 20% 100%,
+		15% 105%, 10% 100%, 5% 100%, 5% 95%, 5% 0%
+	  );
+	  
     }
 
     .chat-bubble-left.animate-in {
