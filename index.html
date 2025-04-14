@@ -182,7 +182,7 @@
       filter: blur(0);
     }
 
-	.chat-bubble-highdetail {
+	.chat-bubble-overwatch {
 	  position: relative;
 	  width: 65%;
 	  margin: 6vh auto;
@@ -203,8 +203,15 @@
 		0 0 30px rgba(0, 255, 213, 0.1);
 
 	  clip-path: polygon(
-		4% 0%, 96% 0%, 100% 10%, 100% 90%,
-		96% 100%, 4% 100%, 0% 90%, 0% 10%
+		4% 0%, 10% 4%, 16% 0%,
+		92% 0%, 96% 5%, 100% 10%,
+		100% 20%, 96% 22%,
+		96% 40%, 100% 42%,
+		100% 80%, 96% 82%, 96% 90%,
+		100% 94%, 96% 100%, 88% 96%,
+		12% 96%, 8% 100%, 4% 96%,
+		0% 92%, 4% 80%, 0% 40%,
+		4% 10%
 	  );
 
 	  /* Decorative inner border effect using pseudo-element */
@@ -220,7 +227,7 @@
 		box-shadow 0.9s ease-out;
 	}
 
-	.chat-bubble-highdetail::before {
+	.chat-bubble-overwatch::before {
 	  content: "";
 	  position: absolute;
 	  top: var(--frame-offset);
@@ -237,7 +244,7 @@
 	}
 
 	/* Glowing animated pulse ring */
-	.chat-bubble-highdetail::after {
+	.chat-bubble-overwatch::after {
 	  content: "";
 	  position: absolute;
 	  top: -12px;
@@ -263,7 +270,7 @@
 	}
 
 	/* Scroll-triggered animation */
-	.chat-bubble-highdetail.animate-in {
+	.chat-bubble-overwatch.animate-in {
 	  opacity: 1;
 	  transform: scale(1);
 	  box-shadow:
