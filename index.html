@@ -244,35 +244,35 @@
 
     const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right');
 
-    const chatObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const container = entry.target;
-        if (entry.isIntersecting) {
-          container.classList.add("animate-in");
+	const chatObserver = new IntersectionObserver((entries) => {
+	  entries.forEach(entry => {
+		const container = entry.target;
+		if (entry.isIntersecting) {
+		  container.classList.add("animate-in");
 
-          const message = container.dataset.originalText || container.textContent.trim();
-          container.dataset.originalText = message;
+		  const message = container.dataset.originalText || container.textContent.trim();
+		  container.dataset.originalText = message;
 
-          container.textContent = "";
-          const dots = document.createElement("div");
-          dots.className = "typing-dots";
-          dots.innerHTML = "<span>.</span><span>.</span><span>.</span>";
-          container.appendChild(dots);
+		  container.textContent = "";
+		  const dots = document.createElement("div");
+		  dots.className = "typing-dots";
+		  dots.innerHTML = "<span>.</span><span>.</span><span>.</span>";
+		  container.appendChild(dots);
 
-          setTimeout(() => {
-            dots.remove();
-            const p = document.createElement("p");
-            container.appendChild(p);
-            typeText(message, p);
-          }, 3300);
-        } else {
-          container.classList.remove("animate-in");
-          container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
-        }
-      });
-    }, {
-      threshold: 0.3
-    });
+		  setTimeout(() => {
+			container.innerHTML = ""; // 🔧 this line clears everything including dots
+			const p = document.createElement("p");
+			container.appendChild(p);
+			typeText(message, p);
+		  }, 3300);
+		} else {
+		  container.classList.remove("animate-in");
+		  container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+		}
+	  });
+	}, {
+	  threshold: 0.3
+	});
 
     chatBubbles.forEach(bubble => chatObserver.observe(bubble));
   </script>
