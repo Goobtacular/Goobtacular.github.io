@@ -182,97 +182,41 @@
       filter: blur(0);
     }
 
-	.chat-bubble-overwatch {
-	  position: relative;
-	  width: 65%;
-	  margin: 6vh auto;
-	  padding: 2rem 2.5rem;
-	  background: linear-gradient(to bottom right, #0e0e0e, #1c1c1c);
-	  color: #00ffd5;
-	  font-family: "Share Tech Mono", monospace;
-	  font-size: 1.2rem;
+	.chat-bubble-fascist {
+	  width: 60%;
+	  height: 30vh;
+	  margin: 5vh auto;
+	  padding: 1.5rem;
+	  font-size: 1.4rem;
+	  font-family: monospace;
+	  color: #00ffee;
+	  background-color: rgba(10, 10, 10, 0.9);
 	  text-align: center;
-	  text-transform: uppercase;
-	  letter-spacing: 1.5px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
 
-	  /* Outer frame with multi-layered glow */
-	  border: 2px solid #00ffd5;
-	  box-shadow:
-		0 0 10px rgba(0, 255, 213, 0.4),
-		inset 0 0 5px rgba(0, 255, 213, 0.2),
-		0 0 30px rgba(0, 255, 213, 0.1);
-
-	  /* Replaced clip-path with complex 22-vertex polygon */
+	  /* Complex futuristic border */
 	  clip-path: polygon(
-		4% 0%, 10% 2%, 16% 0%, 22% 3%, 30% 2%, 38% 0%,
-		46% 2%, 52% 0%, 60% 3%, 68% 0%, 76% 2%, 84% 0%,
-		92% 3%, 96% 0%, 100% 6%, 100% 94%, 96% 100%,
-		92% 97%, 84% 100%, 76% 98%, 68% 100%, 4% 100%,
-		0% 94%, 0% 6%
+		6% 0%, 12% 3%, 18% 0%, 24% 4%, 30% 0%, 36% 3%, 42% 0%, 48% 5%,
+		54% 0%, 60% 3%, 66% 0%, 72% 4%, 78% 0%, 84% 3%, 90% 0%, 96% 4%,
+		100% 8%, 100% 92%, 96% 96%, 90% 100%, 84% 97%, 78% 100%, 72% 96%,
+		66% 100%, 0% 100%, 0% 8%
 	  );
 
-	  --frame-color: #00ffd5;
-	  --frame-glow: rgba(0, 255, 213, 0.3);
-	  --frame-offset: 10px;
-
+	  box-shadow:
+		0 0 20px rgba(0, 255, 213, 0.4),
+		inset 0 0 8px rgba(0, 255, 213, 0.2);
+	  transition: all 0.9s ease-out;
 	  opacity: 0;
-	  transform: scale(0.9);
-	  transition:
-		opacity 0.9s ease-out,
-		transform 0.9s ease-out,
-		box-shadow 0.9s ease-out;
+	  filter: blur(6px);
+	  transform: translateX(-60%) scale(0.9);
 	}
 
-	.chat-bubble-overwatch::before {
-	  content: "";
-	  position: absolute;
-	  top: var(--frame-offset);
-	  bottom: var(--frame-offset);
-	  left: var(--frame-offset);
-	  right: var(--frame-offset);
-	  border: 1px dashed var(--frame-color);
-	  opacity: 0.3;
-	  clip-path: polygon(
-		6% 0%, 94% 0%, 98% 10%, 98% 90%,
-		94% 100%, 6% 100%, 2% 90%, 2% 10%
-	  );
-	  pointer-events: none;
-	}
-
-	/* Glowing animated pulse ring */
-	.chat-bubble-overwatch::after {
-	  content: "";
-	  position: absolute;
-	  top: -12px;
-	  bottom: -12px;
-	  left: -12px;
-	  right: -12px;
-	  border: 2px solid transparent;
-	  border-radius: 12px;
-	  animation: pulseBorder 3s infinite ease-in-out;
-	  pointer-events: none;
-	}
-
-	@keyframes pulseBorder {
-	  0% {
-		box-shadow: 0 0 0px rgba(0, 255, 213, 0.2);
-	  }
-	  50% {
-		box-shadow: 0 0 18px rgba(0, 255, 213, 0.45);
-	  }
-	  100% {
-		box-shadow: 0 0 0px rgba(0, 255, 213, 0.2);
-	  }
-	}
-
-	/* Scroll-triggered animation */
-	.chat-bubble-overwatch.animate-in {
+	.chat-bubble-fascist.animate-in {
 	  opacity: 1;
-	  transform: scale(1);
-	  box-shadow:
-		0 0 16px rgba(0, 255, 213, 0.5),
-		inset 0 0 8px rgba(0, 255, 213, 0.3),
-		0 0 40px rgba(0, 255, 213, 0.2);
+	  filter: blur(0);
+	  transform: translateX(0) scale(1);
 	}
 
     .typing-dots {
@@ -316,7 +260,7 @@
 
     <div class="chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
 	
-	<div class="chat-bubble-overwatch">🧠 “Connection to dreamscape established. Enforcing dominion..”</div>
+	<div class="chat-bubble-fascist">“INFILTRATION SUCCESSFUL. PLANTING PROCESS DOMINION.DELTA. . . . . . . . SUCCESS.”</div>
 
 	<div class="chat-bubble-left">🌌 “Stars align beyond the firewalls…”</div>
 
