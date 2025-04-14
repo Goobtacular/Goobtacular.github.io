@@ -281,34 +281,22 @@
 	  const chatObserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 		  const container = entry.target;
-
 		  if (entry.isIntersecting) {
 			container.classList.add("animate-in");
 
-			const fullText = container.dataset.fulltext;
+			const fullText = container.dataset.fulltext || container.innerText.trim();
+			container.dataset.fulltext = fullText;
 
-			// If it hasn't typed before, show dots and animate
-			if (!container.dataset.typed) {
-			  setTimeout(() => {
-				container.innerHTML = ""; // remove typing dots
-				const p = document.createElement("p");
-				container.appendChild(p);
-				typeText(fullText, p);
+			setTimeout(() => {
+			  container.innerHTML = ""; // clear typing dots or existing text
+			  const p = document.createElement("p");
+			  container.appendChild(p);
+			  typeText(fullText, p);
+			}, 3300);
 
-				// Mark as typed
-				container.dataset.typed = "true";
-			  }, 3300);
-			} else {
-			  // Already typed, just show full text instantly
-			  container.innerHTML = `<p>${fullText}</p>`;
-			}
 		  } else {
 			container.classList.remove("animate-in");
-
-			// If never typed, show dots; if already typed, preserve text
-			if (!container.dataset.typed) {
-			  container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
-			}
+			container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
 		  }
 		});
 	  }, {
@@ -316,9 +304,9 @@
 	  });
 
 	  chatBubbles.forEach(bubble => {
-		// Store the original text
-		const originalText = bubble.innerText.trim();
-		bubble.dataset.fulltext = originalText;
+		// save initial text into data attribute
+		bubble.dataset.fulltext = bubble.innerText.trim();
+		// replace with typing dots
 		bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
 		chatObserver.observe(bubble);
 	  });
