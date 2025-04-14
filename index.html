@@ -110,11 +110,9 @@
       );
     }
 
-    .chat-bubble {
+    .chat-bubble-left, .chat-bubble-right {
+      height: 30vh;
       width: 60%;
-      min-height: 10vh;
-      height: auto;
-      max-width: 90%;
       margin: 5vh auto;
       background-color: rgba(10, 10, 10, 0.85);
       color: #00ffee;
@@ -123,45 +121,72 @@
       font-family: monospace;
       text-align: center;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
       opacity: 0;
       filter: blur(6px);
       transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
-      overflow: visible;
-    }
-
-    .chat-bubble-left {
-      transform: translateX(-60%) scale(0.9);
-      -webkit-mask-image: url("../docs/assets/bubble-mask.svg");
-      mask-image: url("../docs/assets/bubble-mask.svg");
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-size: contain;
-      mask-size: contain;
-      -webkit-mask-position: center;
-      mask-position: center;
     }
 
     .chat-bubble-right {
-      transform: translateX(60%) scale(0.9);
+      transform: translateX(60%) scale(0.9); 
       clip-path: polygon(
-        0% 20%, 10% 0%, 90% 0%, 100% 20%, 100% 80%, 90% 100%, 
-        20% 100%, 15% 90%, 25% 80%, 10% 70%, 20% 60%, 0% 80%
-      );
+		0% 20%, /* top-left */
+		10% 0%, /* slight curve top */
+		90% 0%, /* top-right */
+		100% 20%, /* right curve */
+		100% 80%, /* bottom-right */
+		90% 100%, /* bottom curve */
+		20% 100%, /* bottom-left */
+		15% 90%, /* lightning base */
+		25% 80%, /* lightning zig */
+		10% 70%, /* lightning zag */
+		20% 60%, /* lightning end */
+		0% 80% /* connect back */
+	  );
     }
 
-    .chat-bubble.animate-in {
+	.chat-bubble-left {  
+	  -webkit-mask-image: url("../docs/assets/bubble-mask.svg");
+	  mask-image: url("../docs/assets/bubble-mask.svg");
+	  -webkit-mask-repeat: no-repeat;
+	  mask-repeat: no-repeat;
+	  -webkit-mask-size: contain;
+	  mask-size: contain;
+	  -webkit-mask-position: center;
+	  mask-position: center;
+
+	  background-color: rgba(10, 10, 10, 0.85);
+	  color: #00ffee;
+	  padding: 1.5rem;
+	  font-size: 1.4rem;
+	  font-family: monospace;
+	  text-align: center;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
+	  opacity: 0;
+	  filter: blur(6px);
+	  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+
+	  width: 60%;
+	  height: 30vh;
+	  margin: 5vh auto;
+	  transform: translateX(-60%) scale(0.9);
+	}
+
+    .chat-bubble-left.animate-in {
       opacity: 1;
       transform: translateX(0) scale(1);
       filter: blur(0);
     }
 
-    .chat-bubble p {
-      margin: 0;
-      white-space: pre-wrap;
+    .chat-bubble-right.animate-in {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
     }
 
     .typing-dots {
@@ -203,9 +228,9 @@
     <div class="tech-section">🌫 A quiet moment drifts by...</div>
     <div class="content-section">A Moment to Breathe</div>
 
-    <!-- Chat Bubbles -->
-    <div class="chat-bubble chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
-    <div class="chat-bubble chat-bubble-right">🧠 “Connection to dreamscape stabilized.”</div>
+    <div class="chat-bubble-left">🤖 “We are broadcasting from the mainframe…”</div>
+	<div class="chat-bubble-right">🧠 “Connection to dreamscape stabilized.”</div>
+	<div class="chat-bubble-left">🌌 “Stars align beyond the firewalls…”</div>
 
     <div class="content-section">Almost There...</div>
     <div class="alt-section">🌌 The stars begin to shine through...</div>
@@ -238,52 +263,54 @@
     window.addEventListener("load", resizeParallaxBackground);
   </script>
 
-  <script>
-    const typeText = (text, target, speed = 40) => {
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i < text.length) {
-          target.textContent += text[i];
-          i++;
-        } else {
-          clearInterval(interval);
-        }
-      }, speed);
-    };
+	<script>
+	  const typeText = (text, target, speed = 40) => {
+		let i = 0;
+		const interval = setInterval(() => {
+		  if (i < text.length) {
+			target.textContent += text[i];
+			i++;
+		  } else {
+			clearInterval(interval);
+		  }
+		}, speed);
+	  };
 
-    const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right');
+	  const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right');
 
-    const chatObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const container = entry.target;
+	  const chatObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+		  const container = entry.target;
+		  if (entry.isIntersecting) {
+			container.classList.add("animate-in");
 
-        if (entry.isIntersecting && !container.classList.contains('typed')) {
-          container.classList.add("animate-in");
+			const fullText = container.dataset.fulltext || container.innerText.trim();
+			container.dataset.fulltext = fullText;
 
-          const message = container.dataset.originalText || container.textContent.trim();
-          container.dataset.originalText = message;
+			setTimeout(() => {
+			  container.innerHTML = ""; // clear typing dots or existing text
+			  const p = document.createElement("p");
+			  container.appendChild(p);
+			  typeText(fullText, p);
+			}, 3300);
 
-          container.textContent = "";
-          const dots = document.createElement("div");
-          dots.className = "typing-dots";
-          dots.innerHTML = "<span>.</span><span>.</span><span>.</span>";
-          container.appendChild(dots);
+		  } else {
+			container.classList.remove("animate-in");
+			container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+		  }
+		});
+	  }, {
+		threshold: 0.3
+	  });
 
-          setTimeout(() => {
-            container.innerHTML = "";
-            const p = document.createElement("p");
-            container.appendChild(p);
-            typeText(message, p);
-            container.classList.add('typed');
-          }, 3300);
-        }
-      });
-    }, {
-      threshold: 0.3
-    });
-
-    chatBubbles.forEach(bubble => chatObserver.observe(bubble));
-  </script>
+	  chatBubbles.forEach(bubble => {
+		// save initial text into data attribute
+		bubble.dataset.fulltext = bubble.innerText.trim();
+		// replace with typing dots
+		bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+		chatObserver.observe(bubble);
+	  });
+	</script>
 
 </body>
 </html>
