@@ -202,19 +202,15 @@
 		inset 0 0 5px rgba(0, 255, 213, 0.2),
 		0 0 30px rgba(0, 255, 213, 0.1);
 
+	  /* Replaced clip-path with complex 22-vertex polygon */
 	  clip-path: polygon(
-		4% 0%, 10% 4%, 16% 0%,
-		92% 0%, 96% 5%, 100% 10%,
-		100% 20%, 96% 22%,
-		96% 40%, 100% 42%,
-		100% 80%, 96% 82%, 96% 90%,
-		100% 94%, 96% 100%, 88% 96%,
-		12% 96%, 8% 100%, 4% 96%,
-		0% 92%, 4% 80%, 0% 40%,
-		4% 10%
+		4% 0%, 10% 2%, 16% 0%, 22% 3%, 30% 2%, 38% 0%,
+		46% 2%, 52% 0%, 60% 3%, 68% 0%, 76% 2%, 84% 0%,
+		92% 3%, 96% 0%, 100% 6%, 100% 94%, 96% 100%,
+		92% 97%, 84% 100%, 76% 98%, 68% 100%, 4% 100%,
+		0% 94%, 0% 6%
 	  );
 
-	  /* Decorative inner border effect using pseudo-element */
 	  --frame-color: #00ffd5;
 	  --frame-glow: rgba(0, 255, 213, 0.3);
 	  --frame-offset: 10px;
@@ -368,7 +364,7 @@
 		}, speed);
 	  };
 
-	  const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right, .chat-bubble-highdetail');
+	  const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right');
 
 	  const chatObserver = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
