@@ -95,7 +95,7 @@
       width: 60%;
       max-width: 800px;
       margin: 5vh auto;
-      padding: 3rem 3rem;
+      padding: 2rem 1.5rem;
       font-size: 1.4rem;
       font-family: monospace;
       color: #00ffee;
@@ -112,7 +112,14 @@
       outline-offset: -2px;
       min-height: 180px;
     }
-
+	
+	.chat-bubble-left p,
+	.chat-bubble-right p,
+	.chat-bubble-fascist p {
+	  padding: 1rem 2rem;
+	  line-height: 1.6;
+	}
+	
     .chat-bubble-left {
       transform: translateX(-60%) scale(0.9);
       -webkit-mask-image: url("../docs/assets/bubble-mask.svg");
