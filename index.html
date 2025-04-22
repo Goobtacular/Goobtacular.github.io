@@ -88,10 +88,11 @@
       overflow-y: auto; /* Scrollbar for long text */
       /* Clip-path for speech bubble with left tail */
       clip-path: polygon(
-		10% 0%, 90% 0%, /* Top edge */
-		95% 10%, 100% 15%, 95% 20%, /* Tail on right */
-		95% 90%, 90% 100%, 10% 100%, /* Bottom edge */
-		10% 10% /* Left edge */
+	  90% 0%, 10% 0%, /* Top edge (flipped) */
+	  0% 10%, 0% 90%, /* Left edge (flipped) */
+	  10% 100%, 90% 100%, /* Bottom edge (flipped) */
+	  95% 90%, 100% 85%, 95% 80%, /* Tail in bottom right */
+	  95% 10% /* Right edge (flipped) */
 	  );
     }
 
