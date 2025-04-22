@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto+Mono:wght@400;700&family=Orbitron:wght@400;700&family=Inconsolata:wght@400;700&family=Bungee+Spice&display=swap" rel="stylesheet">
   <title>Parallax Dream</title>
   <style>
     * {
@@ -282,11 +284,11 @@
 
 Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla luctus urna ligula, ut fringilla arcu accumsan id. Vivamus eu interdum augue. Nullam varius eget tortor dapibus porttitor. Morbi commodo pharetra condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean malesuada turpis eget hendrerit varius. Phasellus hendrerit purus nisi, sit amet condimentum quam facilisis eu. Etiam at rhoncus orci, nec congue justo. Etiam vitae nisi quis eros sodales suscipit. Pellentesque eget vestibulum odio. Donec non mauris eget augue semper auctor. Duis lacinia lorem eu sapien tincidunt, elementum viverra erat egestas. Vivamus sodales tincidunt turpis nec elementum.”</div>
     
-    <div class="chat-bubble-fascist" data-font="'Share Tech Mono', monospace" data-color="#55ff55">“INFILTRATION SUCCESSFUL. PLANTING PROCESS DOMINION.DELTA. . . . . . . . SUCCESS. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultricies velit et ornare convallis. Quisque a enim pharetra, interdum lacus non, rhoncus ex. Pellentesque pharetra vulputate mi. Nam hendrerit mi nec risus accumsan molestie in sit amet mi. Nullam nulla mi, pellentesque sit amet arcu sed, scelerisque laoreet odio. Integer eget ligula et ex pretium malesuada non sed metus. Pellentesque convallis faucibus turpis, non aliquet lectus. Aliquam imperdiet vitae magna at gravida.
+    <div class="chat-bubble-fascist" data-font="'Orbitron', monospace" data-color="#ff0000">“INFILTRATION SUCCESSFUL. PLANTING PROCESS DOMINION.DELTA. . . . . . . . SUCCESS. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultricies velit et ornare convallis. Quisque a enim pharetra, interdum lacus non, rhoncus ex. Pellentesque pharetra vulputate mi. Nam hendrerit mi nec risus accumsan molestie in sit amet mi. Nullam nulla mi, pellentesque sit amet arcu sed, scelerisque laoreet odio. Integer eget ligula et ex pretium malesuada non sed metus. Pellentesque convallis faucibus turpis, non aliquet lectus. Aliquam imperdiet vitae magna at gravida.
 
 Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla luctus urna ligula, ut fringilla arcu accumsan id. Vivamus eu interdum augue. Nullam varius eget tortor dapibus porttitor. Morbi commodo pharetra condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean malesuada turpis eget hendrerit varius. Phasellus hendrerit purus nisi, sit amet condimentum quam facilisis eu. Etiam at rhoncus orci, nec congue justo. Etiam vitae nisi quis eros sodales suscipit. Pellentesque eget vestibulum odio. Donec non mauris eget augue semper auctor. Duis lacinia lorem eu sapien tincidunt, elementum viverra erat egestas. Vivamus sodales tincidunt turpis nec elementum.”</div>
 
-    <div class="chat-bubble-left" data-font="Georgia, serif" data-color="#ffff55">🌌 “Stars align beyond the firewalls…”</div>
+    <div class="chat-bubble-left" data-font="'Bungee Spice', sans-serif" data-color="#ffff55">🌌 “Stars align beyond the firewalls…”</div>
 
     <div class="content-section">Almost There...</div>
     <div class="alt-section">🌌 The stars begin to shine through...</div>
@@ -365,7 +367,8 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
             }, 3300);
           } else {
             // Already typed, show full text instantly
-            const Brotherhood = document.createElement("p");
+            // const Brotherhood = document.createElement("p");
+			const p = document.createElement("p");
             p.style.whiteSpace = "normal";
             p.style.overflowWrap = "break-word";
             p.style.width = "100%";
