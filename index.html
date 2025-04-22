@@ -111,50 +111,14 @@
       );
     }
 
-    .chat-bubble-left, .chat-bubble-right {
-      height: 30vh;
-      width: 60%;
-      margin: 5vh auto;
-      background-color: rgba(10, 10, 10, 0.85);
-	  white-space: normal
-	  overflow-wrap: break-word
-      color: #00ffee;
-      padding: 1.5rem;
-      font-size: 1.4rem;
-      font-family: monospace;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
-      opacity: 0;
-      filter: blur(6px);
-      transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
-	  outline: 2px solid black;
-	  outline-offset: -2px;
-    }
-
-    .chat-bubble-right {
-      transform: translateX(60%) scale(0.9); 
-      clip-path: polygon(
-    5% 0%, 95% 0%, 100% 10%, 100% 90%,
-    95% 100%, 5% 100%, 0% 90%, 0% 10%
-  );
-    }
-
-	.chat-bubble-left {  
-	  -webkit-mask-image: url("../docs/assets/bubble-mask.svg");
-	  mask-image: url("../docs/assets/bubble-mask.svg");
-	  -webkit-mask-repeat: no-repeat;
-	  mask-repeat: no-repeat;
-	  -webkit-mask-size: 85% 85%;
-	  mask-size: 85% 85%;
-	  -webkit-mask-position: center;
-	  mask-position: center;
-
+	.chat-bubble-left, .chat-bubble-right, .chat-bubble-fascist {
+	  width: 60%;
+	  height: auto; /* Allow height to adjust to content */
+	  min-height: 30vh; /* Maintain minimum height */
+	  margin: 5vh auto;
 	  background-color: rgba(10, 10, 10, 0.85);
 	  color: #00ffee;
-	  padding: 2rem 3rem;
+	  padding: 1.5rem; /* Reduced padding to maximize content space */
 	  font-size: 1.4rem;
 	  font-family: monospace;
 	  text-align: center;
@@ -165,66 +129,60 @@
 	  opacity: 0;
 	  filter: blur(6px);
 	  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
-
-	  width: 60%;
-	  height: 30vh;
-	  margin: 5vh auto;
-	  transform: translateX(-60%) scale(0.9);
+	  white-space: normal; /* Allow text wrapping */
+	  overflow-wrap: break-word; /* Break long words */
+	  overflow-y: auto; /* Add scrollbar if text overflows */
+	  box-sizing: border-box; /* Ensure padding is included in dimensions */
 	}
 
-    .chat-bubble-left.animate-in {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-      filter: blur(0);
-    }
+	/* Ensure <p> elements inherit wrapping styles */
+	.chat-bubble-left p, .chat-bubble-right p, .chat-bubble-fascist p {
+	  margin: 0;
+	  white-space: normal;
+	  overflow-wrap: break-word;
+	  width: 100%; /* Ensure <p> respects container width */
+	}
 
-    .chat-bubble-right.animate-in {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-      filter: blur(0);
-    }
-
-	.chat-bubble-fascist {
-	  width: 60%;
-	  height: 30vh;
-	  margin: 5vh auto;
-	  padding: 2rem 3rem;
-	  font-size: 1.4rem;
-	  font-family: monospace;
-	  color: #00ffee;
-	  background-color: rgba(10, 10, 10, 0.9);
-	  white-space: normal
-	  overflow-wrap: break-word
-	  text-align: center;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-
-	  /* ✅ CORRECTED path to local SVG */
-	  -webkit-mask-image: url("../docs/assets/fascist-mask.svg");
-	  mask-image: url("../docs/assets/fascist-mask.svg");
-
+	.chat-bubble-left {
+	  transform: translateX(-60%) scale(0.9);
+	  -webkit-mask-image: url("../docs/assets/bubble-mask.svg");
+	  mask-image: url("../docs/assets/bubble-mask.svg");
 	  -webkit-mask-repeat: no-repeat;
 	  mask-repeat: no-repeat;
-	  -webkit-mask-size: 85% 85%%;
-	  mask-size: 85% 85%;
+	  -webkit-mask-size: 100% 100%; /* Fit mask to container */
+	  mask-size: 100% 100%;
 	  -webkit-mask-position: center;
 	  mask-position: center;
+	}
 
+	.chat-bubble-right {
+	  transform: translateX(60%) scale(0.9);
+	  clip-path: polygon(
+		5% 0%, 95% 0%, 100% 10%, 100% 90%,
+		95% 100%, 5% 100%, 0% 90%, 0% 10%
+	  );
+	}
+
+	.chat-bubble-fascist {
+	  background-color: rgba(10, 10, 10, 0.9);
+	  -webkit-mask-image: url("../docs/assets/fascist-mask.svg");
+	  mask-image: url("../docs/assets/fascist-mask.svg");
+	  -webkit-mask-repeat: no-repeat;
+	  mask-repeat: no-repeat;
+	  -webkit-mask-size: 100% 100%; /* Fit mask to container */
+	  mask-size: 100% 100%;
+	  -webkit-mask-position: center;
+	  mask-position: center;
 	  box-shadow:
 		0 0 20px rgba(0, 255, 213, 0.4),
 		inset 0 0 8px rgba(0, 255, 213, 0.2);
-
-	  transition: all 0.9s ease-out;
-	  opacity: 0;
-	  filter: blur(6px);
 	  transform: translateX(-60%) scale(0.9);
 	}
 
-	.chat-bubble-fascist.animate-in {
+	.chat-bubble-left.animate-in, .chat-bubble-right.animate-in, .chat-bubble-fascist.animate-in {
 	  opacity: 1;
-	  filter: blur(0);
 	  transform: translateX(0) scale(1);
+	  filter: blur(0);
 	}
 	
 
@@ -308,63 +266,63 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
 
 	<script>
 	  const typeText = (text, target, speed = 25) => {
-		let i = 0;
-		const interval = setInterval(() => {
-		  if (i < text.length) {
-			target.textContent += text[i];
-			i++;
+	  let i = 0;
+	  const interval = setInterval(() => {
+		if (i < text.length) {
+		  target.textContent += text[i];
+		  i++;
+		} else {
+		  clearInterval(interval);
+		}
+	  }, speed);
+	};
+
+	const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right, .chat-bubble-fascist');
+
+	const chatObserver = new IntersectionObserver((entries) => {
+	  entries.forEach(entry => {
+		const container = entry.target;
+
+		if (entry.isIntersecting) {
+		  container.classList.add("animate-in");
+
+		  const fullText = container.dataset.fulltext;
+
+		  if (!container.dataset.typed) {
+			setTimeout(() => {
+			  container.innerHTML = ""; // Remove typing dots
+			  const p = document.createElement("p");
+			  p.style.whiteSpace = "normal"; // Ensure wrapping
+			  p.style.overflowWrap = "break-word";
+			  p.style.width = "100%";
+			  container.appendChild(p);
+			  typeText(fullText, p);
+
+			  // Mark as typed
+			  container.dataset.typed = "true";
+			}, 3300);
 		  } else {
-			clearInterval(interval);
+			// Already typed, show full text instantly
+			container.innerHTML = `<p style="white-space: normal; overflow-wrap: break-word; width: 100%;">${fullText}</p>`;
 		  }
-		}, speed);
-	  };
+		} else {
+		  container.classList.remove("animate-in");
 
-	  const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right, .chat-bubble-fascist');
-
-	  const chatObserver = new IntersectionObserver((entries) => {
-		entries.forEach(entry => {
-		  const container = entry.target;
-
-		  if (entry.isIntersecting) {
-			container.classList.add("animate-in");
-
-			const fullText = container.dataset.fulltext;
-
-			// If it hasn't typed before, show dots and animate
-			if (!container.dataset.typed) {
-			  setTimeout(() => {
-				container.innerHTML = ""; // remove typing dots
-				const p = document.createElement("p");
-				container.appendChild(p);
-				typeText(fullText, p);
-
-				// Mark as typed
-				container.dataset.typed = "true";
-			  }, 3300);
-			} else {
-			  // Already typed, just show full text instantly
-			  container.innerHTML = `<p>${fullText}</p>`;
-			}
-		  } else {
-			container.classList.remove("animate-in");
-
-			// If never typed, show dots; if already typed, preserve text
-			if (!container.dataset.typed) {
-			  container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
-			}
+		  if (!container.dataset.typed) {
+			container.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
 		  }
-		});
-	  }, {
-		threshold: 0.3
+		}
 	  });
+	}, {
+	  threshold: 0.3
+	});
 
-	  chatBubbles.forEach(bubble => {
-		// Store the original text
-		const originalText = bubble.innerText.trim();
-		bubble.dataset.fulltext = originalText;
-		bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
-		chatObserver.observe(bubble);
-	  });
+	chatBubbles.forEach(bubble => {
+	  const originalText = bubble.innerText.trim();
+	  bubble.dataset.fulltext = originalText;
+	  bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+	  chatObserver.observe(bubble);
+	});			
 	</script>
 
 </body>
