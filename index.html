@@ -69,7 +69,7 @@
       min-height: 30vh;
       max-height: 50vh; /* Limit height for long text */
       margin: 5vh auto;
-      background-color: rgba(39, 0, 61, 0.85);
+      background-color: rgba(118, 0, 191, 0.85);
       color: #00ffee; /* Default text color */
       padding: 2rem; /* Balanced padding */
       font-size: 1.4rem;
@@ -88,12 +88,11 @@
       overflow-y: auto; /* Scrollbar for long text */
       /* Clip-path for speech bubble with left tail */
       clip-path: polygon(
-        10% 0%, 90% 0%, /* Top edge */
-        100% 10%, 100% 90%, /* Right edge */
-        90% 100%, 10% 100%, /* Bottom edge */
-        5% 90%, 0% 85%, 5% 80%, /* Tail on left */
-        5% 10% /* Left edge */
-      );
+		10% 0%, 90% 0%, /* Top edge */
+		95% 10%, 100% 15%, 95% 20%, /* Tail on right */
+		95% 90%, 90% 100%, 10% 100%, /* Bottom edge */
+		10% 10% /* Left edge */
+	  );
     }
 
     .chat-sentience.animate-in {
