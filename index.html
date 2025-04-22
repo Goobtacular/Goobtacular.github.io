@@ -48,7 +48,7 @@
       padding-bottom: 50vh;
     }
 
-    .content-section {
+    .chat-sentience {
       height: 60vh;
       width: 80%;
       margin: 10vh auto;
@@ -60,7 +60,13 @@
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-    }
+	  clip-path: polygon(
+	  90% 0%, 10% 0%, /* Top edge (flipped) */
+	  0% 10%, 0% 90%, /* Left edge (flipped) */
+	  10% 100%, 90% 100%, /* Bottom edge (flipped) */
+	  95% 90%, 100% 85%, 95% 80%, /* Tail in bottom right */
+	  95% 10% /* Right edge (flipped) */
+	}
 
     .alt-section {
       height: 30vh;
@@ -219,11 +225,11 @@
   </div>
 
   <main>
-    <div class="content-section">Welcome to the Dream</div>
+    <div class="chat-sentience">Welcome to the Dream</div>
     <div class="alt-section">"Sometimes the in-between is the most important part."</div>
-    <div class="content-section">Let It Sink In...</div>
+    <div class="chat-sentience">Let It Sink In...</div>
     <div class="tech-section">🌫 A quiet moment drifts by...</div>
-    <div class="content-section">A Moment to Breathe</div>
+    <div class="chat-sentience">A Moment to Breathe</div>
 
     <div class="chat-bubble-left" data-font="Arial, sans-serif" data-color="#ff5555">🤖 “We are broadcasting from the mainframe…Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultricies velit et ornare convallis. Quisque a enim pharetra, interdum lacus non, rhoncus ex. Pellentesque pharetra vulputate mi. Nam hendrerit mi nec risus accumsan molestie in sit amet mi. Nullam nulla mi, pellentesque sit amet arcu sed, scelerisque laoreet odio. Integer eget ligula et ex pretium malesuada non sed metus. Pellentesque convallis faucibus turpis, non aliquet lectus. Aliquam imperdiet vitae magna at gravida.
 
@@ -235,9 +241,9 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
 
     <div class="chat-bubble-left" data-font="Georgia, serif" data-color="#ffff55">🌌 “Stars align beyond the firewalls…”</div>
 
-    <div class="content-section">Almost There...</div>
+    <div class="chat-sentience">Almost There...</div>
     <div class="alt-section">🌌 The stars begin to shine through...</div>
-    <div class="content-section">End of the Dream 🌙</div>
+    <div class="chat-sentience">End of the Dream 🌙</div>
   </main>
 
   <script>
