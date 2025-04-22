@@ -233,7 +233,7 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
 
 Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla luctus urna ligula, ut fringilla arcu accumsan id. Vivamus eu interdum augue. Nullam varius eget tortor dapibus porttitor. Morbi commodo pharetra condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean malesuada turpis eget hendrerit varius. Phasellus hendrerit purus nisi, sit amet condimentum quam facilisis eu. Etiam at rhoncus orci, nec congue justo. Etiam vitae nisi quis eros sodales suscipit. Pellentesque eget vestibulum odio. Donec non mauris eget augue semper auctor. Duis lacinia lorem eu sapien tincidunt, elementum viverra erat egestas. Vivamus sodales tincidunt turpis nec elementum.”</div>
 
-	<div class="chat-bubble-left" data-font="Georgia, serif" data-color="#ff5522">🌌 “Stars align beyond the firewalls…”</div>
+	<div class="chat-bubble-left" data-font="Arial, sans-serif" data-color="#ff5555">🌌 “Stars align beyond the firewalls…”</div>
 
     <div class="content-section">Almost There...</div>
     <div class="alt-section">🌌 The stars begin to shine through...</div>
@@ -294,9 +294,20 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
 			setTimeout(() => {
 			  container.innerHTML = ""; // Remove typing dots
 			  const p = document.createElement("p");
-			  p.style.whiteSpace = "normal"; // Ensure wrapping
-			  p.style.overflowWrap = "break-word";
+			  p.style.whiteSpace = "normal";
+			  p.style.overflowолго
+
+	System: Wrap = "break-word";
 			  p.style.width = "100%";
+
+			  // Apply custom font and color from data- attributes, if present
+			  if (container.dataset.font) {
+				p.style.fontFamily = container.dataset.font;
+			  }
+			  if (container.dataset.color) {
+				p.style.color = container.dataset.color;
+			  }
+
 			  container.appendChild(p);
 			  typeText(fullText, p);
 
@@ -305,7 +316,19 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
 			}, 3300);
 		  } else {
 			// Already typed, show full text instantly
-			container.innerHTML = `<p style="white-space: normal; overflow-wrap: break-word; width: 100%;">${fullText}</p>`;
+			const p = document.createElement("p");
+			p.style.whiteSpace = "normal";
+			p.style.overflowWrap = "break-word";
+			p.style.width = "100%";
+			if (container.dataset.font) {
+			  p.style.fontFamily = container.dataset.font;
+			}
+			if (container.dataset.color) {
+			  p.style.color = container.dataset.color;
+			}
+			p.textContent = fullText;
+			container.innerHTML = "";
+			container.appendChild(p);
 		  }
 		} else {
 		  container.classList.remove("animate-in");
@@ -324,7 +347,7 @@ Nam eu massa tellus. In diam metus, euismod a ornare id, porta id elit. Nulla lu
 	  bubble.dataset.fulltext = originalText;
 	  bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
 	  chatObserver.observe(bubble);
-	});			
+	});		
 	</script>
 
 </body>
