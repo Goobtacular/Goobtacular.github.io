@@ -368,9 +368,9 @@
 	  typeNext();
 	};
 
-	const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right, .chat-bubble-fascist, .chat-sentience, .tech-section');
+    const chatBubbles = document.querySelectorAll('.chat-bubble-left, .chat-bubble-right, .chat-bubble-fascist, .chat-sentience, .tech-section');
 
-	const chatObserver = new IntersectionObserver((entries) => {
+    const chatObserver = new IntersectionObserver((entries) => {
 	  entries.forEach(entry => {
 		const container = entry.target;
 
@@ -386,15 +386,12 @@
 			  p.style.whiteSpace = "pre-wrap"; // Preserve whitespace and line breaks
 			  p.style.overflowWrap = "break-word";
 			  p.style.width = "100%";
-			  // Apply custom font, color, and font-size from data- attributes
+			  // Apply custom font and color from data- attributes
 			  if (container.dataset.font) {
 				p.style.fontFamily = container.dataset.font;
 			  }
 			  if (container.dataset.color) {
 				p.style.color = container.dataset.color;
-			  }
-			  if (container.dataset.fontSize) { // Add this to handle font-size
-				p.style.fontSize = container.dataset.fontSize;
 			  }
 			  container.appendChild(p);
 			  typeText(fullText, p);
@@ -415,9 +412,6 @@
 			if (container.dataset.color) {
 			  p.style.color = container.dataset.color;
 			}
-			if (container.dataset.fontSize) { // Add this to handle font-size
-			  p.style.fontSize = container.dataset.fontSize;
-			}
 			// Split text by <br> and join with actual <br> elements
 			const segments = fullText.split(/<br\s*\/?>/i);
 			p.innerHTML = segments.join('<br>');
@@ -435,12 +429,12 @@
 	  threshold: 0.3
 	});
 
-	chatBubbles.forEach(bubble => {
-	  const originalText = bubble.innerText.trim();
-	  bubble.dataset.fulltext = originalText;
-	  bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
-	  chatObserver.observe(bubble);
-	});
+    chatBubbles.forEach(bubble => {
+      const originalText = bubble.innerText.trim();
+      bubble.dataset.fulltext = originalText;
+      bubble.innerHTML = '<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>';
+      chatObserver.observe(bubble);
+    });
   </script>
 </body>
 </html>
